@@ -32,7 +32,114 @@ public class mocsparserUI extends javax.swing.JFrame{
         initComponents();
     }
 
+    class Info{
+        public Info(){
+            schoolname = "";
+            title = "";
+            start = "";
+            length = "";
+            estimate = "";
+            language = "";
+            subtitles = "";
+            about = "";
+            staff = "";
+            staff_profile = "";
+            info = "";
+            similar = "";
+        }
+        private String toString (Info info){
+            String res = "    \"title\": \"" + info.title + "\"\n" + 
+                        "    \"from\": \"" + info.schoolname + "\"\n" + 
+                        "    \"start\": \"" + info.start + "\"\n" + 
+                        "    \"length\": \"" + info.length + "\"\n" + 
+                        "    \"estimate\": \"" + info.estimate + "\"\n" + 
+                        "    \"staff\": \"" + info.staff + "\"\n" +
+                        "    \"similar\": \"" + info.similar + "\"\n" +
+                        "    \"language\": \"" + info.language + "\"\n" +
+                        "    \"subtitles\": \"" + info.subtitles + "\"\n" +
+                        "    \"description\": \"" + info.about + "\"\n" +
+                        "    \"info\": \"" + info.info + "\"\n";
+            return res;
+        }
+        String schoolname;
+        String title;
+        String start;
+        String length;
+        String estimate;
+        String language;
+        String subtitles;
+        String about;
+        String staff;
+        String staff_profile;
+        String similar;
+        String info;
+    }
 
+
+    private Info parseEdxCourse(String url){
+        Info info = new Info(); 
+        Document doc_courses = null;
+        try {
+            doc_courses = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            LogArea.append("!!!!Ошибка!!!! - " + e.toString()); 
+            return null;
+        }
+        Element course_info = doc_courses.select("div[class=copy-detail course-detail-info views-fieldset]").first();
+        Element school = course_info.select("div[class=course-detail-school item]").first();
+        Elements staffs = doc_courses.select("div[class=course-staff-info views-fieldset]");
+        for (Element staff_person: staffs)
+        {
+            //staff_person.attr(estimate)
+        }
+        info.schoolname = school.select("a").first().html();
+        info.title = doc_courses.select("h2[class=course-detail-title]").first().text();
+        if (!course_info.select("div[class=course-detail-start item]").isEmpty())
+            info.start = course_info.select("div[class=course-detail-start item]").first().text();
+        if (!course_info.select("div[class=course-detail-length item]").isEmpty())
+            info.length = course_info.select("div[class=course-detail-length item]").first().text();
+        if (!course_info.select("div[class=course-detail-effort item]").isEmpty())
+            info.estimate = course_info.select("div[class=course-detail-effort item]").first().text();
+        info.about = doc_courses.select("div[class=course-section course-detail-about]").first().text();
+
+        return info;
+    }
+    
+    private Info parseCourseraCourse(String url){
+        Info info = new Info(); 
+        Document doc_courses = null;
+        try {
+            doc_courses = Jsoup.connect(url).get();
+            LogArea.append(doc_courses.html());
+        } catch (IOException e) {
+            LogArea.append("!!!!Ошибка!!!! - " + e.toString()); 
+            return null;
+        }
+        info.info = doc_courses.html();
+        //info.info = doc_courses.select("div[class=coursera-course2-data coursera-course2-course-at-glance]").first().html();
+        Elements staffs = doc_courses.select("div[class=coursera-course2-instructors-profile]");
+        if (!staffs.isEmpty())
+        {
+            for (Element staff: staffs)
+            {
+                String ref = staff.select("a").first().attr("href");
+                info.staff += staff.text() + "\n" + ref + "\n";
+            }
+        }
+        Elements similars = doc_courses.select("div[coursera-similartopics-course-name]");
+        if (!similars.isEmpty())
+        {
+            for (Element similar: similars)
+            {
+                String ref = similar.select("a").first().attr("href");
+                info.similar += similar.text() + "\n" + ref + "\n";;
+            }
+        }
+
+        //info.about = doc_courses.select("div[class=coursera-course-detail]").first().text();
+
+        return info;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +159,7 @@ public class mocsparserUI extends javax.swing.JFrame{
         ProgressBar = new javax.swing.JProgressBar();
         buStart = new javax.swing.JButton();
         buStop = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +230,13 @@ public class mocsparserUI extends javax.swing.JFrame{
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,23 +245,32 @@ public class mocsparserUI extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
+                    .addComponent(ProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buStart)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buStop)))
-                        .addGap(0, 691, Short.MAX_VALUE))
-                    .addComponent(ProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(buStop))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(160, 160, 160)
+                                .addComponent(jButton1)))
+                        .addGap(0, 458, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(45, 45, 45)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buStart)
                     .addComponent(buStop))
@@ -219,36 +343,7 @@ public class mocsparserUI extends javax.swing.JFrame{
                 LogArea.append("{"+"\n");
                 if (doc_courses!=null)
                     doc_courses.empty();
-                try {
-                    LogArea.append("Connecting = " + link.toString()+ "\n");
-                    doc_courses = Jsoup.connect(link.toString()).get();
-                } catch (IOException e) {
-                    LogArea.append("!!!!Ошибка!!!! - " + e.toString());
-                    continue;
-                }
-                Element course_info = doc_courses.select("div[class=copy-detail course-detail-info views-fieldset]").first();
-                Element school = course_info.select("div[class=course-detail-school item]").first();
-                String schoolname = school.select("a").first().html();
-                String title = "";
-                String start = "";
-                String length = "";
-                String estimate = "";
-                String about = "";
-                title = doc_courses.select("h2[class=course-detail-title]").first().text();
-                if (!course_info.select("div[class=course-detail-start item]").isEmpty())
-                    start = course_info.select("div[class=course-detail-start item]").first().text();
-                if (!course_info.select("div[class=course-detail-length item]").isEmpty())
-                    length = course_info.select("div[class=course-detail-length item]").first().text();
-                if (!course_info.select("div[class=course-detail-effort item]").isEmpty())
-                    estimate = course_info.select("div[class=course-detail-effort item]").first().text();
-                about = doc_courses.select("div[class=course-section course-detail-about]").first().text();
-                LogArea.append("    \"title\": \"" + title + "\"\n" + 
-                               "    \"platform\": \"EdX\"\n" + 
-                               "    \"from\": \"" + schoolname + "\"\n" + 
-                               "    \"start\": \"" + start + "\"\n" + 
-                               "    \"length\": \"" + length + "\"\n" + 
-                               "    \"estimate\": \"" + estimate + "\"\n" + 
-                               "    \"description\": \"" + about + "\"\n");
+                
                 fProgress += step;
                 progress = Math.round(fProgress); 
                 ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
@@ -279,7 +374,6 @@ public class mocsparserUI extends javax.swing.JFrame{
             int progress = 0;
             float fProgress = 0;
             Document doc = null;
-            Document doc_courses = null;
             Element next;
             Vector links = new Vector(); 
             ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
@@ -320,59 +414,26 @@ public class mocsparserUI extends javax.swing.JFrame{
             
             //вычисляем шаг для прогресса и пошагово открываем все ссылки
             int courseNum = links.toArray().length;
-            LogArea.append("CoursesNum = " + Integer.toString(courseNum));
             float step = 100f/courseNum;
-            LogArea.append("step = " + Float.toString(step));
             
             for (Object link: links)
             {
+                Info info = null;
                 LogArea.append("{"+"\n");
-                if (doc_courses!=null)
-                    doc_courses.empty();
-                try {
-                    LogArea.append("Connecting = " + link.toString()+ "\n");
-                    doc_courses = Jsoup.connect(link.toString()).get();
-                } catch (IOException e) {
-                    LogArea.append("!!!!Ошибка!!!! - " + e.toString());
-                    continue;
-                }
-                Element course_info = doc_courses.select("div[class=copy-detail course-detail-info views-fieldset]").first();
-                Element school = course_info.select("div[class=course-detail-school item]").first();
-                Elements staffs = doc_courses.select("div[class=course-staff-info views-fieldset]");
-                String schoolname = school.select("a").first().html();
-                String title = "";
-                String start = "";
-                String length = "";
-                String estimate = "";
-                String about = "";
-                String staff = "";
-                String staff_profile = "";
-                for (Element staff_person: staffs)
-                {
-                    staff_person.attr(estimate)
-                }
-
-                title = doc_courses.select("h2[class=course-detail-title]").first().text();
-                if (!course_info.select("div[class=course-detail-start item]").isEmpty())
-                    start = course_info.select("div[class=course-detail-start item]").first().text();
-                if (!course_info.select("div[class=course-detail-length item]").isEmpty())
-                    length = course_info.select("div[class=course-detail-length item]").first().text();
-                if (!course_info.select("div[class=course-detail-effort item]").isEmpty())
-                    estimate = course_info.select("div[class=course-detail-effort item]").first().text();
-                about = doc_courses.select("div[class=course-section course-detail-about]").first().text();
-                LogArea.append("    \"title\": \"" + title + "\"\n" + 
+                info = parseEdxCourse(link.toString());
+                LogArea.append("    \"title\": \"" + info.title + "\"\n" + 
                                "    \"platform\": \"EdX\"\n" + 
-                               "    \"from\": \"" + schoolname + "\"\n" + 
-                               "    \"start\": \"" + start + "\"\n" + 
-                               "    \"length\": \"" + length + "\"\n" + 
-                               "    \"estimate\": \"" + estimate + "\"\n" + 
+                               "    \"from\": \"" + info.schoolname + "\"\n" + 
+                               "    \"start\": \"" + info.start + "\"\n" + 
+                               "    \"length\": \"" + info.length + "\"\n" + 
+                               "    \"estimate\": \"" + info.estimate + "\"\n" + 
                                "    \"language\": \"" + "\"\n" +
                                "    \"subtitles\": \"" + "\"\n" +
-                               "    \"description\": \"" + about + "\"\n");
+                               "    \"description\": \"" + info.about + "\"\n");
+                LogArea.append("},"+"\n");
                 fProgress += step;
                 progress = Math.round(fProgress); 
                 ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
-                LogArea.append("},"+"\n");
             }
             progress = 100; 
             ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
@@ -516,6 +577,11 @@ public class mocsparserUI extends javax.swing.JFrame{
         buStop.setEnabled(false);
     }//GEN-LAST:event_buStopActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Info info = parseCourseraCourse("https://www.coursera.org/course/megafauna");
+       LogArea.append(info.toString());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -556,6 +622,7 @@ public class mocsparserUI extends javax.swing.JFrame{
     private javax.swing.JProgressBar ProgressBar;
     private javax.swing.JButton buStart;
     private javax.swing.JButton buStop;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
