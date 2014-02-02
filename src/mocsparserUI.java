@@ -20,21 +20,110 @@ import javax.swing.*;
 import java.beans.*;
 import java.util.Random;
 import java.util.Vector;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class mocsparserUI extends javax.swing.JFrame{
 
     private TaskParsingEdx task;
+    private Connection MySQLConnection = null;
+    private boolean connectedtodb = false;
     /**
      * Creates new form mocsparserUI
      */
     public mocsparserUI() {
         initComponents();
     }
+    
+    class mySQLConnectionInfo{
+        public mySQLConnectionInfo()
+        {
+            serverName = "";
+            database = "";
+            url = "jdbc:mysql://" + serverName + "/" + database;
+            username = "";
+            password = "";
+        }
+        String serverName;
+        String database;
+        String url;
+        String username;
+        String password;
+    }
+    private boolean connecttoMySQL(mySQLConnectionInfo connectioninfo){
+        try {
+            // Название драйвера
+            String driverName = "com.mysql.jdbc.Driver"; 
+            Class.forName(driverName);
+            if (connectioninfo.url == "")
+                connectioninfo.url = "jdbc:mysql://" + connectioninfo.serverName + "/" + connectioninfo.database;
+            MySQLConnection = DriverManager.getConnection(connectioninfo.url, connectioninfo.username, connectioninfo.password);
+
+        } // end try
+        catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                
+                return false;
+        }catch (SQLException e) {
+                e.printStackTrace();
+                
+                return false;
+                // Could not find the database driver
+        } 
+
+        return true;
+    }
+    private boolean InserttoDB(Info info){
+        Connection connection;
+        boolean rs = false;
+        try {
+                // Название драйвера
+                String driverName = "com.mysql.jdbc.Driver"; 
+
+                Class.forName(driverName);
+
+                // Create a connection to the database
+                String serverName = "localhost";
+                String mydatabase = "moocsdb";
+                String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
+                String username = "root";
+                String password = "";
+
+                connection = DriverManager.getConnection(url, username, password);
+                System.out.println("is connect to DB" + connection);
+                info.replaceAll("'", "\\\\'");
+                String query = "INSERT INTO `moocsdb`.`courses` "
+                        + "(`id`, `title`, `schoolname`, `platform`, `start`, `length`, `estimate`, `language`, `subtitles`, `about`, `staff`, `staff_profile`, `info`, `similar`) VALUES"
+                        + "(NULL, '" + info.title + "', '" + info.schoolname + "', '" + info.platform + "', '" + info.start + "', '" + info.length + "', '" + info.estimate + "', '" + info.language + "', '" + info.subtitles + "',"
+                        + " '" + info.about + "', '" + info.staff + "', '" + info.staff_profile + "', '" + info.info + "', '" + info.similar + "');";
+                //LogArea.append(query);
+                Statement stmt = connection.createStatement();
+
+                rs = stmt.execute(query);
+                connection.close();
+        } // end try
+        catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                
+                return rs;
+                // Could not find the database driver
+        } catch (SQLException e) {
+                e.printStackTrace();
+                
+                return rs;
+                // Could not connect to the database
+        }
+        return true;
+    }
 
     class Info{
         public Info(){
             schoolname = "";
+            platform = "";
             title = "";
             start = "";
             length = "";
@@ -47,21 +136,39 @@ public class mocsparserUI extends javax.swing.JFrame{
             info = "";
             similar = "";
         }
-        private String toString (Info info){
-            String res = "    \"title\": \"" + info.title + "\"\n" + 
-                        "    \"from\": \"" + info.schoolname + "\"\n" + 
-                        "    \"start\": \"" + info.start + "\"\n" + 
-                        "    \"length\": \"" + info.length + "\"\n" + 
-                        "    \"estimate\": \"" + info.estimate + "\"\n" + 
-                        "    \"staff\": \"" + info.staff + "\"\n" +
-                        "    \"similar\": \"" + info.similar + "\"\n" +
-                        "    \"language\": \"" + info.language + "\"\n" +
-                        "    \"subtitles\": \"" + info.subtitles + "\"\n" +
-                        "    \"description\": \"" + info.about + "\"\n" +
-                        "    \"info\": \"" + info.info + "\"\n";
+        @Override
+        public String toString (){
+            String res = "    \"title\": \"" + this.title + "\"\n" + 
+                        "    \"from\": \"" + this.schoolname + "\"\n" + 
+                        "    \"start\": \"" + this.start + "\"\n" + 
+                        "    \"length\": \"" + this.length + "\"\n" + 
+                        "    \"estimate\": \"" + this.estimate + "\"\n" + 
+                        "    \"staff\": \"" + this.staff + "\"\n" +
+                        "    \"staff_profile\": \"" + this.staff_profile + "\"\n" +
+                        "    \"similar\": \"" + this.similar + "\"\n" +
+                        "    \"language\": \"" + this.language + "\"\n" +
+                        "    \"subtitles\": \"" + this.subtitles + "\"\n" +
+                        "    \"description\": \"" + this.about + "\"\n" +
+                        "    \"info\": \"" + this.info + "\"\n";
             return res;
         }
+        public void replaceAll(String pattern, String replacement){
+            schoolname = schoolname.replaceAll(pattern, replacement);
+            platform = platform.replaceAll(pattern, replacement);;
+            title = title.replaceAll(pattern, replacement);;
+            start = start.replaceAll(pattern, replacement);;
+            length = length.replaceAll(pattern, replacement);;
+            estimate = estimate.replaceAll(pattern, replacement);;
+            language = language.replaceAll(pattern, replacement);;
+            subtitles = subtitles.replaceAll(pattern, replacement);;
+            about = about.replaceAll(pattern, replacement);;
+            staff = staff.replaceAll(pattern, replacement);;
+            staff_profile = staff_profile.replaceAll(pattern, replacement);;
+            similar = similar.replaceAll(pattern, replacement);;
+            info = info.replaceAll(pattern, replacement);;
+        } 
         String schoolname;
+        String platform;
         String title;
         String start;
         String length;
@@ -90,7 +197,8 @@ public class mocsparserUI extends javax.swing.JFrame{
         Elements staffs = doc_courses.select("div[class=course-staff-info views-fieldset]");
         for (Element staff_person: staffs)
         {
-            //staff_person.attr(estimate)
+            info.staff += staff_person.select("h4[class=staff-title]").first().text() + "; ";
+            info.staff_profile += info.staff + " - " + staff_person.select("div[class=staff-resume]").first().text() + "; ";
         }
         info.schoolname = school.select("a").first().html();
         info.title = doc_courses.select("h2[class=course-detail-title]").first().text();
@@ -160,6 +268,18 @@ public class mocsparserUI extends javax.swing.JFrame{
         buStart = new javax.swing.JButton();
         buStop = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,7 +324,7 @@ public class mocsparserUI extends javax.swing.JFrame{
                 .addComponent(jCheckBox3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         ProgressBar.setToolTipText("");
@@ -237,6 +357,83 @@ public class mocsparserUI extends javax.swing.JFrame{
             }
         });
 
+        jButton2.setText("Соединиться с БД");
+        jButton2.setToolTipText("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("localhost");
+
+        jTextField2.setText("root");
+
+        jLabel1.setText("Сервер");
+
+        jLabel2.setText("Имя пользователя");
+
+        jLabel3.setText("Пароль");
+
+        jLabel4.setText("Нет соединения");
+
+        jTextField4.setText("moocsdb");
+        jTextField4.setToolTipText("");
+
+        jLabel5.setText("Имя БД");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField1)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextField2)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField3)
+                        .addComponent(jLabel4)
+                        .addComponent(jTextField4)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+                    .addComponent(jLabel5))
+                .addContainerGap(121, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(5, 5, 5)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4)
+                .addContainerGap())
+        );
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,9 +451,15 @@ public class mocsparserUI extends javax.swing.JFrame{
                                 .addComponent(buStop))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(160, 160, 160)
-                                .addComponent(jButton1)))
-                        .addGap(0, 458, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(160, 160, 160)
+                                        .addComponent(jButton1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(34, 34, 34)
+                                        .addComponent(jButton3)))))
+                        .addGap(172, 172, 172)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -264,17 +467,25 @@ public class mocsparserUI extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton1)
+                                .addGap(45, 45, 45))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buStart)
+                            .addComponent(buStop))
+                        .addGap(9, 9, 9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(45, 45, 45)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buStart)
-                    .addComponent(buStop))
-                .addGap(9, 9, 9)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,9 +630,13 @@ public class mocsparserUI extends javax.swing.JFrame{
             for (Object link: links)
             {
                 Info info = null;
-                LogArea.append("{"+"\n");
+                //LogArea.append("{"+"\n");
                 info = parseEdxCourse(link.toString());
-                LogArea.append("    \"title\": \"" + info.title + "\"\n" + 
+                if (InserttoDB(info))
+                    LogArea.append("Record Added!");
+                else
+                    LogArea.append("Error! - Can't add record");
+                /*LogArea.append("    \"title\": \"" + info.title + "\"\n" + 
                                "    \"platform\": \"EdX\"\n" + 
                                "    \"from\": \"" + info.schoolname + "\"\n" + 
                                "    \"start\": \"" + info.start + "\"\n" + 
@@ -430,7 +645,7 @@ public class mocsparserUI extends javax.swing.JFrame{
                                "    \"language\": \"" + "\"\n" +
                                "    \"subtitles\": \"" + "\"\n" +
                                "    \"description\": \"" + info.about + "\"\n");
-                LogArea.append("},"+"\n");
+                LogArea.append("},"+"\n");*/
                 fProgress += step;
                 progress = Math.round(fProgress); 
                 ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
@@ -578,9 +793,53 @@ public class mocsparserUI extends javax.swing.JFrame{
     }//GEN-LAST:event_buStopActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Info info = parseCourseraCourse("https://www.coursera.org/course/megafauna");
+       Info info = parseEdxCourse("https://www.edx.org/course/utaustinx/utaustinx-ut-5-01x-linear-algebra-1162");
        LogArea.append(info.toString());
+        
+        
+        //Info info = new Info();
+        if (InserttoDB(info))
+            LogArea.append("Added!");
+        else
+            LogArea.append("Error! - Can't add record");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            if (connectedtodb == false)
+            {
+                mySQLConnectionInfo connectinfo = new mySQLConnectionInfo();
+                connectinfo.serverName = jTextField1.getText();
+                connectinfo.database = jTextField4.getText();
+                connectinfo.username = jTextField2.getText();
+                connectinfo.password = jTextField3.getText();
+                if (connecttoMySQL(connectinfo))
+                {
+                    jButton2.setText("Отсоединить");
+                    LogArea.append("is connect to DB" + MySQLConnection +"\n");
+                    jLabel4.setText("Соединено!");
+                    connectedtodb = true;
+                }
+            }
+            else
+            {
+                MySQLConnection.close();
+                connectedtodb = false;
+                LogArea.append("Disconected from DB" + MySQLConnection +"\n");
+                jButton2.setText("Соединиться с БД");
+                jLabel4.setText("Нет соединения!");
+            }
+        }catch (SQLException e) {
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String str = "INSERT INTO `moocsdb`.`courses` (`id`, `title`, `schoolname`, `platform`, `start`, `length`, `estimate`, `language`, `subtitles`, `about`, `staff`, `staff_profile`, `info`, `similar`) VALUES(NULL, 'Linear Algebra - Foundations to Frontiers', 'UTAustinX', '', 'Classes Start: 29 Jan 2014', 'Course Length: 16 weeks', 'Estimated effort: 8 hours/week', '', '', 'About this Course Linear Algebra: Foundations to Frontiers (LAFF) is packed full of challenging, rewarding material that is essential for mathematicians, engineers, scientists, and anyone working with large datasets. Students appreciate our unique approach to teaching linear algebra because: It’s visual. It connects hand calculations, mathematical abstractions, and computer programming. It illustrates the development of mathematical theory. It’s applicable. In this course, you will learn all the standard topics that are taught in typical undergraduate linear algebra courses all over the world, but using our unique method, you'll also get more! LAFF was developed following the syllabus of an introductory linear algebra course at The University of Texas at Austin taught by Professor Robert van de Geijn, an expert on high performance linear algebra libraries. Through short videos, exercises, visualizations, and programming assignments, you will study Vector and Matrix Operations, Linear Transformations, Solving Systems of Equations, Vector Spaces, Linear Least-Squares, and Eigenvalues and Eigenvectors. In addition, you will get a glimpse of cutting edge research on the development of linear algebra libraries, which are used throughout computational science. We invite you to LAFF with us!', 'Maggie Myers; Robert van de Geijn; ', 'Maggie Myers;  - Dr. Maggie Myers is a lecturer for the Department of Computer Science and Division of Statistics and Scientific Computing. She currently teaches undergraduate and graduate courses in Bayesian Statistics. Her research activities range from informal learning opportunities in mathematics education to formal derivation of linear algebra algorithms.  Earlier in her career she was a senior research scientist with the Charles A. Dana Center and consultant to the Southwest Educational Development Lab (SEDL). Her partnerships (in marriage and research) with Prof. van de Geijn have lasted for decades and seem to be surviving the development of this MOOC.; Maggie Myers; Robert van de Geijn;  - With a Ph.D. in applied mathematics, Robert van de Geijn is a professor of Computer Science and a member of the Institute for Computational Engineering and Sciences and the Division of Statistics and Scientific Computation at the University of Texas at Austin.   Prof. van de Geijn is a leading expert in the areas of high-performance computing, linear algebra libraries, parallel processing, and formal derivation of algorithms.  He is the recipient of the 2007-2008 President’s Associates Teaching Excellence Award from The University of Texas at Austin.; ', '', '');Error! - Can't add record";
+        str = "'Linea'r Algeb'ra";
+        LogArea.append(str+"\n");
+        LogArea.append(str.replaceAll("'", "\\\\'"));
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -623,11 +882,23 @@ public class mocsparserUI extends javax.swing.JFrame{
     private javax.swing.JButton buStart;
     private javax.swing.JButton buStop;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
