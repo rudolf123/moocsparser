@@ -12,6 +12,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.Page;
+import com.gargoylesoftware.htmlunit.WebResponse;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import java.io.File;
 import java.io.IOException;
 import java.awt.*;
@@ -25,6 +31,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+
 
 
 public class mocsparserUI extends javax.swing.JFrame{
@@ -735,13 +750,37 @@ public class mocsparserUI extends javax.swing.JFrame{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Document doc = null;
+        /*HtmlPage page = null;
+        final WebClient webClient = new WebClient(BrowserVersion.INTERNET_EXPLORER_10);
+        webClient.getOptions().setTimeout(20000);
+        webClient.getOptions().setJavaScriptEnabled(true);
+        webClient.getOptions().setThrowExceptionOnScriptError(false);
+        webClient.getOptions().setCssEnabled(false);
+        // Ждем, пока отработают ajax-запросы, выполняемые при загрузке страницы
+        webClient.setAjaxController(new NicelyResynchronizingAjaxController());*/
+        // Запрашиваем и рендерим веб-страницу
+        
+        WebDriver driver = new HtmlUnitDriver();
+
+        // And now use this to visit Google
+        driver.get("https://www.coursera.org/course/ancientgreeks");
+        /*try{
+            page = webClient.getPage("https://www.coursera.org/course/ancientgreeks");
+            webClient.waitForBackgroundJavaScript(5 * 1000);
+        }catch(IOException e){
+            LogArea.append("!!!!Ошибка!!!! - " + e.toString() + "\n");
+        }*/
+        //WebResponse response = page.getWebResponse();
+        //String content = response.getContentAsString();
+        LogArea.append(driver.getPageSource());
+        //webClient.closeAllWindows(); 
+        /*Document doc = null;
         try {
-            doc = Jsoup.connect("http://www.mooc-list.com/course/globalization-business-enterprise-coursera").get();
+            doc = Jsoup.connect("https://www.coursera.org/course/ancientgreeks").userAgent("Mozilla").get();
             LogArea.append(doc.html());
         } catch (IOException e) {
             LogArea.append("!!!!Ошибка!!!! - " + e.toString());
-        }
+        }*/
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -771,7 +810,7 @@ public class mocsparserUI extends javax.swing.JFrame{
             java.util.logging.Logger.getLogger(mocsparserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        java.util.logging.Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
