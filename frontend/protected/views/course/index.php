@@ -1,7 +1,7 @@
 <?php
-$this->breadcrumbs=array(
+/*$this->breadcrumbs=array(
 	'Courses',
-);
+);*/
 
 $this->menu=array(
 	array('label'=>'Create Course', 'url'=>array('create')),
@@ -9,7 +9,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Courses</h1>
+<h1>Список курсов</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
