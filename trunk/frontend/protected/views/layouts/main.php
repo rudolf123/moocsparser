@@ -29,7 +29,7 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Главная', 'url'=>array('/site/index')),
-                                array('label'=>'Курсы', 'url'=>array('/course/index')),
+                                array('label'=>'Курсы', 'url'=>array('/course/admin')),
 				array('label'=>'О проекте', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Обратная связь', 'url'=>array('/site/contact')),
 				array('label'=>'Войти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
