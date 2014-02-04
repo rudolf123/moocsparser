@@ -20,6 +20,11 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -45,6 +50,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class mocsparserUI extends javax.swing.JFrame{
 
     private TaskParsingEdx task;
+    private TaskParsingMoocList taskMooclist;
     private Connection MySQLConnection = null;
     private boolean connectedtodb = false;
     /**
@@ -93,6 +99,8 @@ public class mocsparserUI extends javax.swing.JFrame{
         return true;
     }
     private boolean InserttoDB(Info info){
+        if (info == null)
+            return false;
         boolean rs = false;
         try {
                 info.replaceAll("'", "\\\\'");
@@ -131,7 +139,8 @@ public class mocsparserUI extends javax.swing.JFrame{
         @Override
         public String toString (){
             String res = "    \"title\": \"" + this.title + "\"\n" + 
-                        "    \"from\": \"" + this.schoolname + "\"\n" + 
+                        "    \"platform\": \"" + this.platform + "\"\n" + 
+                        "    \"university\": \"" + this.schoolname + "\"\n" + 
                         "    \"start\": \"" + this.start + "\"\n" + 
                         "    \"length\": \"" + this.length + "\"\n" + 
                         "    \"estimate\": \"" + this.estimate + "\"\n" + 
@@ -174,10 +183,38 @@ public class mocsparserUI extends javax.swing.JFrame{
         String info;
     }
 
-
+    private Info parseMoocListCourse(String url){
+        Info info = new Info(); 
+        Document doc_courses = null;
+        try {
+            doc_courses = Jsoup.connect(url).timeout(5*1000).userAgent("Mozilla").get();
+        } catch (IOException e) {
+            LogArea.append("!!!!Ошибка!!!! - " + e.toString() + "\n"); 
+            return null;
+        }
+        info.title = doc_courses.select("h1[id=page-title]").text();
+        info.platform = doc_courses.select("div[class=field field-name-field-initiative field-type-taxonomy-term-reference field-label-above clearfix]").select("a").first().text();
+        info.schoolname = doc_courses.select("div[class=field field-name-field-university-entity field-type-taxonomy-term-reference field-label-above clearfix]").select("a").first().text();
+        Element staff = doc_courses.select("div[class=field field-name-field-instructors field-type-taxonomy-term-reference field-label-above clearfix]").first();
+        Elements staffs = staff.select("li");
+        for (Element staff_person: staffs)
+        {
+            info.staff += staff_person.select("a").first().text() + "; ";
+            info.staff_profile += "http://www.mooc-list.com/" + staff_person.select("a").attr("href") + " ; ";
+        }  
+        info.about = doc_courses.select("div[class=section field field-name-body field-type-text-with-summary field-label-hidden]").text();
+        info.start = doc_courses.select("div[class=section field field-name-field-start-date-text field-type-text field-label-above]").select("div[class=field-items]").text();
+        info.length = doc_courses.select("div[class=field field-name-field-length field-type-taxonomy-term-reference field-label-above clearfix]").select("a").text();
+        info.estimate = doc_courses.select("div[class=field field-name-field-estimated-effort field-type-taxonomy-term-reference field-label-above clearfix]").select("a").text();
+        info.info = doc_courses.select("div[class=section field field-name-field-recommended-background field-type-text field-label-above]").text();
+        info.language = doc_courses.select("div[class=field field-name-field-language field-type-taxonomy-term-reference field-label-above clearfix]").select("a").text();
+        
+        return info;
+    }
+    
     private Info parseEdxCourse(String url){
         Info info = new Info(); 
-        info.platform = "EdX";
+        info.platform = "edX";
         Document doc_courses = null;
         try {
             doc_courses = Jsoup.connect(url).get();
@@ -266,7 +303,7 @@ public class mocsparserUI extends javax.swing.JFrame{
         ProgressBar = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
         LogArea = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -327,10 +364,10 @@ public class mocsparserUI extends javax.swing.JFrame{
         });
         jScrollPane1.setViewportView(LogArea);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jCheckBox1ActionPerformed(evt);
             }
         });
 
@@ -359,8 +396,8 @@ public class mocsparserUI extends javax.swing.JFrame{
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel5)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(110, 110, 110)
-                .addComponent(jButton1)
+                .addGap(16, 16, 16)
+                .addComponent(jCheckBox1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(buStart)
@@ -393,7 +430,7 @@ public class mocsparserUI extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jButton1))
+                    .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buStart)
@@ -426,73 +463,197 @@ public class mocsparserUI extends javax.swing.JFrame{
         /*
          * Main task. Executed in background thread.
          */
-        @Override
-        public Void doInBackground() {
-            int progress = 0;
-            float fProgress = 0;
-            Document doc = null;
-            Document doc_courses = null;
-            Element next;
-            Vector links = new Vector(); 
+        private boolean getLinksFromCache = false;
+        private Vector links;
+        private Vector category_links;
+        private int progress = 0;
+        private float fProgress = 0;
+        private Document doc = null;
+        private Element next;
+        private float step;
+        
+        public TaskParsingMoocList(boolean usecache){
+            if (usecache == true)
+            {
+                getLinksFromCache = usecache;
+            }
+            else
+            {
+                links = new Vector();
+                category_links = new Vector();
+            }
+        }
+        
+        private boolean getCoursesLinksFromCache(){
+            links = new Vector();
+            InputStream    fis = null;
+            BufferedReader br;
+            String         line;
+            try {
+                fis = new FileInputStream("D:\\MoocsparserJAVA\\linkscache.txt");
+            }catch (IOException e){
+                LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                return false;
+            }
+            br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+            try {
+                while ((line = br.readLine()) != null) {
+                    LogArea.append(line + "\n");
+                    links.add(line);
+                }
+            }catch (IOException e){
+                LogArea.append("!!!!Ошибка!!!! - " + e.toString() + "\n");
+                return false;
+            }
+
+            // Done with the file
+            try {
+                br.close();
+            }catch (IOException e){
+                LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                return false;
+            }
+            
+            br = null;
+            fis = null;
+            
+            return true;
+        }
+        
+        private boolean getCoursesLinks(){
+            ProgressBar.setString("Cобираем ссылки на курсы с http://www.mooc-list.com");
             ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
             try {
-                doc = Jsoup.connect("https://www.edx.org/course-list").get();
+                doc = Jsoup.connect("http://www.mooc-list.com/").userAgent("Mozilla").get();
             } catch (IOException e) {
                 LogArea.append("!!!!Ошибка!!!! - " + e.toString());
             }
-            boolean check1 = doc.select("li[class=pager-next odd]").isEmpty();
-            boolean check2 = doc.select("li[class=pager-next even]").isEmpty();
-            Elements course_titles = doc.select("h2[class=title course-title]");
-            for(Element course_title : course_titles)
+            Elements course_categories = doc.select("div[id=block-menu-menu-categories]").select("a");
+            for(Element course_category : course_categories)
             {
-                String s = course_title.select("a").first().attr("href");
+                String s = "http://www.mooc-list.com" + course_category.attr("href");
                 LogArea.append(s + "\n");
-                links.add(s);
+                category_links.add(s);
             }
-
-            //собираем ссылки на курсы
-            while (!doc.select("li[class=pager-next odd]").isEmpty())
+            int catNum = category_links.toArray().length;
+            LogArea.append("catNum = " + Integer.toString(catNum));
+            step = 100f/catNum;
+            //all
+            
+            for (Object link:category_links)
             {
-                next = doc.select("li[class=pager-next odd]").first();
-                String s = next.select("a").first().attr("href");
                 doc.empty();
                 try {
-                    doc = Jsoup.connect("https://www.edx.org" + s).get();
+                    doc = Jsoup.connect(link.toString()).timeout(5*1000).userAgent("Mozilla").get();
+                    //LogArea.append(doc.html() + "\n");
                 } catch (IOException e) {
                     LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                    
+                    continue;
                 }
-                course_titles = doc.select("h2[class=title course-title]");
+                Elements course_titles = doc.select("div[id=block-system-main]").first().select("div[class=view-content]").select("a");
                 for(Element course_title : course_titles)
                 {
-                    String tmp = course_title.select("a").first().attr("href");
+                    String tmp = "http://www.mooc-list.com" + course_title.attr("href");;
                     LogArea.append(tmp + "\n");
                     links.add(tmp);
                 }
+                while (!doc.select("div[id=block-system-main]").select("li[class=pager-next]").isEmpty())
+                {
+                    next = doc.select("div[id=block-system-main]").select("li[class=pager-next]").first();
+                    String s = next.select("a").first().attr("href");
+                    doc.empty();
+                    try {
+                        doc = Jsoup.connect("http://www.mooc-list.com" + s).timeout(5*1000).userAgent("Mozilla").get();
+                    } catch (IOException e) {
+                        LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                        
+                        continue;
+                    }
+                    course_titles = doc.select("div[id=block-system-main]").first().select("div[class=view-content]").select("a");
+                    for(Element course_title : course_titles)
+                    {
+                        String tmp = "http://www.mooc-list.com" + course_title.attr("href");;
+                        LogArea.append(tmp + "\n");
+                        links.add(tmp);
+                    }
+                }
+                fProgress += step;
+                progress = Math.round(fProgress); 
+                ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
             }
             
+            ProgressBar.setString("Готово");
+            progress = 100; 
+            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            
+            return true;
+        }
+        
+        @Override
+        public Void doInBackground() {
+            if (getLinksFromCache == false)
+                getCoursesLinks();
+            else
+                getCoursesLinksFromCache();
+                
+                
+
+            /* //upcoming
+            Elements course_titles = doc.select("div[id=block-views-upcoming-courses-block]").first().select("div[class=view-content]").select("a");
+            
+            for(Element course_title : course_titles)
+            {
+                String s = "http://www.mooc-list.com" + course_title.attr("href");
+                LogArea.append(s + "\n");
+                links.add(s);
+            }
+            
+            //собираем ссылки на курсы
+            while (!doc.select("div[id=block-views-upcoming-courses-block]").select("li[class=pager-next]").isEmpty())
+            {
+                next = doc.select("div[id=block-views-upcoming-courses-block]").select("li[class=pager-next]").first();
+                String s = next.select("a").first().attr("href");
+                doc.empty();
+                try {
+                    doc = Jsoup.connect("http://www.mooc-list.com" + s).timeout(5*1000).userAgent("Mozilla").get();
+                } catch (IOException e) {
+                    LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                }
+                course_titles = doc.select("div[id=block-views-upcoming-courses-block]").first().select("div[class=view-content]").select("a");
+                for(Element course_title : course_titles)
+                {
+                    String tmp = "http://www.mooc-list.com" + course_title.attr("href");;
+                    LogArea.append(tmp + "\n");
+                    links.add(tmp);
+                }
+            }*/
+            ProgressBar.setString("Cобираем описания курсов с http://www.mooc-list.com");
             //вычисляем шаг для прогресса и пошагово открываем все ссылки
             int courseNum = links.toArray().length;
             LogArea.append("CoursesNum = " + Integer.toString(courseNum));
-            float step = 100f/courseNum;
+            step = 100f/courseNum;
             LogArea.append("step = " + Float.toString(step));
-            
+
             for (Object link: links)
             {
-                LogArea.append("{"+"\n");
-                if (doc_courses!=null)
-                    doc_courses.empty();
+                Info info = null;
+                info = parseMoocListCourse(link.toString());
+                if (InserttoDB(info))
+                    LogArea.append("Запись добавлена!" + "\n");
+                else
+                    LogArea.append("Ошибка! - Невозможно добавить запись" + "\n");
                 
                 fProgress += step;
                 progress = Math.round(fProgress); 
                 ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
-                LogArea.append("},"+"\n");
             }
+            ProgressBar.setString("Готово");
             progress = 100; 
             ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            
             return null;
         }
-        
-
         /*
          * Executed in event dispatching thread
          */
@@ -502,6 +663,7 @@ public class mocsparserUI extends javax.swing.JFrame{
             buStop.setEnabled(false);
         }
     }
+    
         
     class TaskParsingEdx extends SwingWorker<Void, Void> {
         /*
@@ -523,6 +685,8 @@ public class mocsparserUI extends javax.swing.JFrame{
             boolean check1 = doc.select("li[class=pager-next odd]").isEmpty();
             boolean check2 = doc.select("li[class=pager-next even]").isEmpty();
             Elements course_titles = doc.select("h2[class=title course-title]");
+            
+            ProgressBar.setString("Cобираем ссылки на курсы с https://www.edx.org/");
             for(Element course_title : course_titles)
             {
                 String s = course_title.select("a").first().attr("href");
@@ -553,7 +717,7 @@ public class mocsparserUI extends javax.swing.JFrame{
             //вычисляем шаг для прогресса и пошагово открываем все ссылки
             int courseNum = links.toArray().length;
             float step = 100f/courseNum;
-            
+            ProgressBar.setString("Cобираем описания курсов с https://www.edx.org/");
             for (Object link: links)
             {
                 Info info = null;
@@ -568,6 +732,7 @@ public class mocsparserUI extends javax.swing.JFrame{
                 ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
             }
             progress = 100; 
+            ProgressBar.setString("Готово");
             ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
             return null;
         }
@@ -691,8 +856,10 @@ public class mocsparserUI extends javax.swing.JFrame{
         else
         {
             ProgressBar.setStringPainted(true);
-            task = new TaskParsingEdx();
-            task.execute();
+            //task = new TaskParsingEdx();
+            //task.execute();
+            taskMooclist = new TaskParsingMoocList(true);
+            taskMooclist.execute();
             buStart.setEnabled(false);
             buStop.setEnabled(true);
         }
@@ -702,6 +869,7 @@ public class mocsparserUI extends javax.swing.JFrame{
         if ("progress" == evt.getPropertyName()) {
             int progress = (Integer) evt.getNewValue();
             ProgressBar.setValue(progress);
+            
            // jTextArea1.append(String.format(
             //        "Completed %d%% of task.\n", progress));
         } 
@@ -749,40 +917,9 @@ public class mocsparserUI extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*HtmlPage page = null;
-        final WebClient webClient = new WebClient(BrowserVersion.INTERNET_EXPLORER_10);
-        webClient.getOptions().setTimeout(20000);
-        webClient.getOptions().setJavaScriptEnabled(true);
-        webClient.getOptions().setThrowExceptionOnScriptError(false);
-        webClient.getOptions().setCssEnabled(false);
-        // Ждем, пока отработают ajax-запросы, выполняемые при загрузке страницы
-        webClient.setAjaxController(new NicelyResynchronizingAjaxController());*/
-        // Запрашиваем и рендерим веб-страницу
-        
-        WebDriver driver = new HtmlUnitDriver();
-
-        // And now use this to visit Google
-        driver.get("https://www.coursera.org/course/ancientgreeks");
-        /*try{
-            page = webClient.getPage("https://www.coursera.org/course/ancientgreeks");
-            webClient.waitForBackgroundJavaScript(5 * 1000);
-        }catch(IOException e){
-            LogArea.append("!!!!Ошибка!!!! - " + e.toString() + "\n");
-        }*/
-        //WebResponse response = page.getWebResponse();
-        //String content = response.getContentAsString();
-        LogArea.append(driver.getPageSource());
-        //webClient.closeAllWindows(); 
-        /*Document doc = null;
-        try {
-            doc = Jsoup.connect("https://www.coursera.org/course/ancientgreeks").userAgent("Mozilla").get();
-            LogArea.append(doc.html());
-        } catch (IOException e) {
-            LogArea.append("!!!!Ошибка!!!! - " + e.toString());
-        }*/
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -824,8 +961,8 @@ public class mocsparserUI extends javax.swing.JFrame{
     private javax.swing.JProgressBar ProgressBar;
     private javax.swing.JButton buStart;
     private javax.swing.JButton buStop;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
