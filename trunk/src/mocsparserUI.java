@@ -12,13 +12,13 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import com.gargoylesoftware.htmlunit.WebClient;
+/*import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebResponse;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
-import java.io.File;
+import java.io.File;*/
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.BufferedReader;
@@ -26,23 +26,23 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.awt.*;
-import java.awt.event.*;
+//import java.awt.event.*;
 import javax.swing.*;
-import java.beans.*;
-import java.util.Random;
+//import java.beans.*;
+//import java.util.Random;
 import java.util.Vector;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
-
+/*
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;*/
 
 
 
@@ -112,6 +112,7 @@ public class mocsparserUI extends javax.swing.JFrame{
 
                 rs = stmt.execute(query);
         } catch (SQLException e) {
+                LogArea.append("!!!!Ошибка при добавлении в БД!!!! - " + e.toString() + "\n"); 
                 e.printStackTrace();
                 
                 return rs;
@@ -364,7 +365,7 @@ public class mocsparserUI extends javax.swing.JFrame{
         });
         jScrollPane1.setViewportView(LogArea);
 
-        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.setText("Использовать ссылки из кэша");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -396,13 +397,13 @@ public class mocsparserUI extends javax.swing.JFrame{
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel5)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(16, 16, 16)
-                .addComponent(jCheckBox1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(buStart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buStop)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(ProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
@@ -428,13 +429,12 @@ public class mocsparserUI extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jCheckBox1))
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buStart)
-                    .addComponent(buStop))
+                    .addComponent(buStop)
+                    .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -642,7 +642,7 @@ public class mocsparserUI extends javax.swing.JFrame{
                 if (InserttoDB(info))
                     LogArea.append("Запись добавлена!" + "\n");
                 else
-                    LogArea.append("Ошибка! - Невозможно добавить запись" + "\n");
+                    LogArea.append("Ошибка! - Невозможно добавить запись" + link.toString() + "\n");
                 
                 fProgress += step;
                 progress = Math.round(fProgress); 
@@ -889,17 +889,18 @@ public class mocsparserUI extends javax.swing.JFrame{
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
+            mySQLConnectionInfo connectinfo = new mySQLConnectionInfo();
+            connectinfo.serverName = jTextField1.getText();
+            connectinfo.database = jTextField4.getText();
+            connectinfo.username = jTextField2.getText();
+            connectinfo.password = jTextField3.getText();
+            
             if (connectedtodb == false)
             {
-                mySQLConnectionInfo connectinfo = new mySQLConnectionInfo();
-                connectinfo.serverName = jTextField1.getText();
-                connectinfo.database = jTextField4.getText();
-                connectinfo.username = jTextField2.getText();
-                connectinfo.password = jTextField3.getText();
                 if (connecttoMySQL(connectinfo))
                 {
                     jButton2.setText("Отсоединить");
-                    LogArea.append("is connect to DB" + MySQLConnection +"\n");
+                    LogArea.append("Соединено с БД: " + connectinfo.serverName +"/"+ connectinfo.database + "\n");
                     jLabel4.setText("Соединено!");
                     connectedtodb = true;
                 }
@@ -908,7 +909,7 @@ public class mocsparserUI extends javax.swing.JFrame{
             {
                 MySQLConnection.close();
                 connectedtodb = false;
-                LogArea.append("Disconected from DB" + MySQLConnection +"\n");
+                LogArea.append("Отсоединено от БД: " + connectinfo.serverName +"/"+ connectinfo.database + "\n");
                 jButton2.setText("Соединиться с БД");
                 jLabel4.setText("Нет соединения!");
             }
