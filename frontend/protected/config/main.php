@@ -10,7 +10,10 @@ return array(
 	'name'=>'MOOC агрегатор',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+        'preload'=>array(
+            'log',
+            //'bootstrap',
+            ),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -32,12 +35,17 @@ return array(
 
 	// application components
 	'components'=>array(
-		'user'=>array(
-			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+                'user'=>array(
+                        // enable cookie-based authentication
+                        'allowAutoLogin'=>true,
+                        'loginUrl' => array('user/login'),
+
 		),
-		// uncomment the following to enable URLs in path-format
-		
+                'session' => array(
+                    'class' => 'CDbHttpSession',
+                    'timeout' => 6000,
+                ),
+
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -45,7 +53,11 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
-		),
+                    ),
+                'authManager'=>array(
+                    'class' => 'PhpAuthManager',
+                    'defaultRoles' => array('guest'),
+                    ),
 		
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
@@ -62,8 +74,8 @@ return array(
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-            'errorAction'=>'site/error',
-        ),
+                    'errorAction'=>'site/error',
+                ),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -79,6 +91,13 @@ return array(
 				*/
 			),
 		),
+                //'bootstrap'=>array(
+                //        'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
+                //        'responsiveCss' => true,
+                //),
+                'user'=>array(
+                        'class' => 'WebUser',
+                ),
 	),
 
 	// application-level parameters that can be accessed
@@ -87,4 +106,6 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
+    
+        'sourceLanguage'=>'ru'
 );
