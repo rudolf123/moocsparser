@@ -75,20 +75,20 @@ class Course extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'title' => 'Title',
-			'schoolname' => 'Schoolname',
-			'platform' => 'Platform',
-			'start' => 'Start',
-			'length' => 'Length',
-			'estimate' => 'Estimate',
-			'language' => 'Language',
-			'subtitles' => 'Subtitles',
-			'about' => 'About',
-			'staff' => 'Staff',
-			'staff_profile' => 'Staff Profile',
-			'info' => 'Info',
-			'similar' => 'Similar',
+			'id' => '№',
+			'title' => 'Название',
+			'schoolname' => 'Университет',
+			'platform' => 'Платформа',
+			'start' => 'Дата начала',
+			'length' => 'Продолжительность',
+			'estimate' => 'Самоподготовка',
+			'language' => 'Язык',
+			'subtitles' => 'Субтитры',
+			'about' => 'О курсе',
+			'staff' => 'Преподаватели',
+			'staff_profile' => 'Профайл преподавателей',
+			'info' => 'Доп. информация',
+			'similar' => 'Похожие курсы',
 		);
 	}
 

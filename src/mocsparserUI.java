@@ -490,7 +490,7 @@ public class mocsparserUI extends javax.swing.JFrame{
             BufferedReader br;
             String         line;
             try {
-                fis = new FileInputStream("D:\\MoocsparserJAVA\\linkscache.txt");
+                fis = new FileInputStream("D:\\Documents and Settings\\Владимир\\Рабочий стол\\moocsparser_java\\repo\\linkscache.txt");
             }catch (IOException e){
                 LogArea.append("!!!!Ошибка!!!! - " + e.toString());
                 return false;
