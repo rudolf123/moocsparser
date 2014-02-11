@@ -2995,3 +2995,619 @@ Stack trace:
 REQUEST_URI=/index.php/request/css/style.css
 HTTP_REFERER=http://moocstable/index.php/request/create
 ---
+2014/02/11 13:00:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:00:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:01:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:01:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:01:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:01:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:01:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:01:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:01:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/user/registration
+---
+2014/02/11 13:01:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style.css
+HTTP_REFERER=http://moocstable/index.php/user/registration
+---
+2014/02/11 13:01:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:01:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:02:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:02:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:02:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:02:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:02:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/user/registration
+---
+2014/02/11 13:02:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style.css
+HTTP_REFERER=http://moocstable/index.php/user/registration
+---
+2014/02/11 13:02:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:02:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:02:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:02:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:02:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:02:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:02:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:02:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:02:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:02:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:02:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:02:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:02:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:02:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/user/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/user/login
+---
+2014/02/11 13:04:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:04:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:04:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:04:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:19:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:19:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style-1000px.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:19:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:20:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:20:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-1000px.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:20:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:20:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:20:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:20:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:20:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:20:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:20:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:24:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style-...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:24:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/css/style....')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/css/style.css
+HTTP_REFERER=http://moocstable/index.php/site/index
+---
+2014/02/11 13:24:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:24:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:29:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:29:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/css/sty...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/css/style.css
+HTTP_REFERER=http://moocstable/index.php/request/create
+---
+2014/02/11 13:33:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style-desktop.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---
+2014/02/11 13:33:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "css".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('css')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('css')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('course/css/styl...')
+#3 Z:\home\Yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 Z:\home\moocstable\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/course/css/style.css
+HTTP_REFERER=http://moocstable/index.php/course/admin
+---

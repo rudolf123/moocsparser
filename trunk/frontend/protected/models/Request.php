@@ -83,6 +83,7 @@ class Request extends CActiveRecord
 			'outcomes_eng' => 'Компетенции(что умеет студент после окончания курса)(англ.)',
 			'date' => 'Дата заполнения',
 			'instructor_email' => 'email преподавателя для связи',
+                        'url' => 'Ссылка на курс в системе moodle',
 		);
 	}
 
