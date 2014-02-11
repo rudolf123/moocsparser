@@ -12,13 +12,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-/*import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.Page;
-import com.gargoylesoftware.htmlunit.WebResponse;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
-import java.io.File;*/
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.BufferedReader;
@@ -26,24 +19,13 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.awt.*;
-//import java.awt.event.*;
 import javax.swing.*;
-//import java.beans.*;
-//import java.util.Random;
 import java.util.Vector;
 import java.sql.Connection;
 import java.sql.DriverManager;
-//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
-
-/*
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;*/
-
 
 
 
@@ -305,6 +287,7 @@ public class mocsparserUI extends javax.swing.JFrame{
         jScrollPane1 = new javax.swing.JScrollPane();
         LogArea = new javax.swing.JTextArea();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -372,6 +355,13 @@ public class mocsparserUI extends javax.swing.JFrame{
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -397,6 +387,8 @@ public class mocsparserUI extends javax.swing.JFrame{
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel5)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(83, 83, 83)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(buStart)
@@ -429,8 +421,10 @@ public class mocsparserUI extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buStart)
                     .addComponent(buStop)
@@ -459,6 +453,172 @@ public class mocsparserUI extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    class TaskParsingStudyPgta extends SwingWorker<Void, Void> {
+        /*
+         * Main task. Executed in background thread.
+         */
+        private boolean getLinksFromCache = false;
+        private Vector links;
+        private Vector category_links;
+        private int progress = 0;
+        private float fProgress = 0;
+        private Document doc = null;
+        private Element next;
+        private float step;
+        
+        public TaskParsingStudyPgta(boolean usecache){
+            if (usecache == true)
+            {
+                getLinksFromCache = usecache;
+            }
+            else
+            {
+                links = new Vector();
+                category_links = new Vector();
+            }
+        }
+        
+        private boolean getCoursesLinksFromCache(){
+            links = new Vector();
+            InputStream    fis = null;
+            BufferedReader br;
+            String         line;
+            try {
+                fis = new FileInputStream("D:\\Documents and Settings\\Владимир\\Рабочий стол\\moocsparser_java\\repo\\linkscache.txt");
+            }catch (IOException e){
+                LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                return false;
+            }
+            br = new BufferedReader(new InputStreamReader(fis, Charset.forName("UTF-8")));
+            try {
+                while ((line = br.readLine()) != null) {
+                    LogArea.append(line + "\n");
+                    links.add(line);
+                }
+            }catch (IOException e){
+                LogArea.append("!!!!Ошибка!!!! - " + e.toString() + "\n");
+                return false;
+            }
+
+            // Done with the file
+            try {
+                br.close();
+            }catch (IOException e){
+                LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                return false;
+            }
+            
+            br = null;
+            fis = null;
+            
+            return true;
+        }
+        
+        public boolean getCoursesLinks(){
+            ProgressBar.setString("Cобираем ссылки на курсы с http://study.pgta.ru/");
+            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            try {
+                doc = Jsoup.connect("http://study.pgta.ru/course/index.php").userAgent("Mozilla").get();
+            } catch (IOException e) {
+                LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+            }
+            Elements course_categories = doc.select("td[class=category name]").select("a");
+            for(Element course_category : course_categories)
+            {
+                String s = course_category.attr("href");
+                LogArea.append(s + "\n");
+                category_links.add(s);
+            }
+            int catNum = category_links.toArray().length;
+            LogArea.append("catNum = " + Integer.toString(catNum));
+            step = 100f/catNum;
+            //all
+            
+            for (Object link:category_links)
+            {
+                doc.empty();
+                try {
+                    doc = Jsoup.connect(link.toString()).timeout(5*1000).userAgent("Mozilla").get();
+                    //LogArea.append(doc.html() + "\n");
+                } catch (IOException e) {
+                    LogArea.append("!!!!Ошибка!!!! - " + e.toString());
+                    
+                    continue;
+                }
+                Elements course_titles = null;
+                if (!doc.select("table[class=generalbox boxaligncenter]").isEmpty())
+                {
+                    course_titles = doc.select("table[class=generalbox boxaligncenter]").select("a[title=Краткое описание]");
+                    for(Element course_title : course_titles)
+                    {
+                        String tmp = course_title.attr("href");;
+                        LogArea.append(tmp + "\n");
+                        links.add(tmp);
+                    }
+                }
+                
+                if (!doc.select("div[class=courseboxes box)]").isEmpty())
+                {
+                    
+                }
+
+                /**/
+                fProgress += step;
+                progress = Math.round(fProgress); 
+                ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            }
+            
+            ProgressBar.setString("Готово");
+            progress = 100; 
+            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            
+            return true;
+        }
+        
+        @Override
+        public Void doInBackground() {
+            if (getLinksFromCache == false)
+                getCoursesLinks();
+            else
+                getCoursesLinksFromCache();
+            progress = 0; 
+            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            ProgressBar.setString("Cобираем описания курсов с http://www.mooc-list.com");
+            //вычисляем шаг для прогресса и пошагово открываем все ссылки
+            int courseNum = links.toArray().length;
+            LogArea.append("CoursesNum = " + Integer.toString(courseNum));
+            step = 100f/courseNum;
+            LogArea.append("step = " + Float.toString(step));
+
+            for (Object link: links)
+            {
+                Info info = null;
+                info = parseMoocListCourse(link.toString());
+                if (InserttoDB(info))
+                    LogArea.append("Запись добавлена!" + "\n");
+                else
+                    LogArea.append("Ошибка! - Невозможно добавить запись" + link.toString() + "\n");
+                
+                fProgress += step;
+                progress = Math.round(fProgress); 
+                ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            }
+            ProgressBar.setString("Готово");
+            progress = 100; 
+            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
+            
+            return null;
+        }
+        /*
+         * Executed in event dispatching thread
+         */
+        @Override
+        public void done() {
+            buStart.setEnabled(true);
+            buStop.setEnabled(false);
+        }
+    }
+        
     class TaskParsingMoocList extends SwingWorker<Void, Void> {
         /*
          * Main task. Executed in background thread.
@@ -596,38 +756,8 @@ public class mocsparserUI extends javax.swing.JFrame{
                 getCoursesLinks();
             else
                 getCoursesLinksFromCache();
-                
-                
-
-            /* //upcoming
-            Elements course_titles = doc.select("div[id=block-views-upcoming-courses-block]").first().select("div[class=view-content]").select("a");
-            
-            for(Element course_title : course_titles)
-            {
-                String s = "http://www.mooc-list.com" + course_title.attr("href");
-                LogArea.append(s + "\n");
-                links.add(s);
-            }
-            
-            //собираем ссылки на курсы
-            while (!doc.select("div[id=block-views-upcoming-courses-block]").select("li[class=pager-next]").isEmpty())
-            {
-                next = doc.select("div[id=block-views-upcoming-courses-block]").select("li[class=pager-next]").first();
-                String s = next.select("a").first().attr("href");
-                doc.empty();
-                try {
-                    doc = Jsoup.connect("http://www.mooc-list.com" + s).timeout(5*1000).userAgent("Mozilla").get();
-                } catch (IOException e) {
-                    LogArea.append("!!!!Ошибка!!!! - " + e.toString());
-                }
-                course_titles = doc.select("div[id=block-views-upcoming-courses-block]").first().select("div[class=view-content]").select("a");
-                for(Element course_title : course_titles)
-                {
-                    String tmp = "http://www.mooc-list.com" + course_title.attr("href");;
-                    LogArea.append(tmp + "\n");
-                    links.add(tmp);
-                }
-            }*/
+            progress = 0; 
+            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
             ProgressBar.setString("Cобираем описания курсов с http://www.mooc-list.com");
             //вычисляем шаг для прогресса и пошагово открываем все ссылки
             int courseNum = links.toArray().length;
@@ -922,6 +1052,11 @@ public class mocsparserUI extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TaskParsingStudyPgta task_new = new TaskParsingStudyPgta(false);
+        task_new.getCoursesLinks();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -962,6 +1097,7 @@ public class mocsparserUI extends javax.swing.JFrame{
     private javax.swing.JProgressBar ProgressBar;
     private javax.swing.JButton buStart;
     private javax.swing.JButton buStop;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
