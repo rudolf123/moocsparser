@@ -18,6 +18,7 @@
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/config.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/skel.min.js"></script>
         <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/skel-panels.min.js"></script>
+        <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/inputlistener.js"></script>
 
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/skel-noscript.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" />
@@ -69,7 +70,7 @@
                 <footer class="container" id="site-footer">
                     <div class="row">
                         <div class="3u">
-                            Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+                            Copyright &copy; <?php echo date('Y'); ?> by Vladimir Yuranov (rudolf123@narod.ru).<br/>
                             All Rights Reserved.<br/>
                             <?php echo Yii::powered(); ?>
                         </div>

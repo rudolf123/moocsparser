@@ -1,7 +1,7 @@
 <div class="row">
 <h1>Регистрация нового курса</h1>
 
-<?php>
+<?php
         $forms = $this->beginWidget('CActiveForm', array(
                 'id' => 'msform',
                 'enableClientValidation' => true,
@@ -30,6 +30,7 @@
 	<fieldset>
 		<h2 class="fs-title">Общая информация</h2>
 		<h3 class="fs-subtitle">Шаг 1</h3>
+                <?php echo $forms->textField($form, 'url',array('placeholder' => 'Ссылка на курс в moodle')) ?>
                 <?php echo $forms->textField($form, 'instructor_name_rus',array('placeholder' => 'ФИО преподавателя (рус.)')) ?>
                 <?php echo $forms->textField($form, 'instructor_name_eng',array('placeholder' => 'ФИО преподавателя (англ.)')) ?>
                 <?php echo $forms->textField($form, 'course_name_rus',array('placeholder' => 'Название курса (рус.)')) ?>
@@ -71,6 +72,70 @@
 <script src="http://thecodeplayer.com/uploads/js/jquery-1.9.1.min.js" type="text/javascript"></script>
 
 <script src="http://thecodeplayer.com/uploads/js/jquery.easing.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    
+function SendPost() {
+    $.ajax({
+             type:'post',//тип запроса: get,post либо head
+             //url:'http://moocstable/index.php/request/create',//url адрес файла обработчика
+             url: '<?php echo Yii::app()->request->hostInfo.Yii::app()->request->url ?>',
+             data:{'url':document.getElementById('Request_url').value},//параметры запроса
+             response:'text',//тип возвращаемого ответа text либо xml
+             success: function(data)
+             {
+               $("#Request_course_name_rus").val(data);
+             }
+         });
+}
+(function($){
+       
+    $.fn.onInput = function(callBack) {
+               
+        var fields = this;
+       
+        fields.focus(function(e) {
+               
+                var field = $(this);
+               
+                $(this).data('value', $.trim($(this).val()));
+               
+                $(this).data('timerChange', setInterval(function(){
+                       
+                        if($.trim(field.val()) != field.data('value'))
+                        {
+                                field.trigger('onInput');
+                                field.data('value', $.trim(field.val()));
+                        }
+                       
+                }, 30));
+        });
+       
+        fields.blur(function(e) {
+               
+                clearInterval($(this).data('timerChange'));
+               
+                if($.trim($(this).val()) != $(this).data('value'))
+                {
+                        $(this).trigger('onInput');
+                        $(this).data('value', $.trim($(this).val()));
+                }
+        });
+       
+        fields.on('onInput', function(e){
+                if(typeof(callBack) == 'function')
+                callBack.call(this, e);
+        });    
+ 
+        return fields;
+   };
+ 
+})(jQuery);
+
+    $('#Request_url:text').onInput(function(){
+                    SendPost();  
+    });
+</script>
 
 <script>
     //jQuery time
