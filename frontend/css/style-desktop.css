@@ -10,7 +10,10 @@
 
 /* Wrappers */
 
-
+        @font-face {
+            font-family: Open Sans Condensed Rus; /* Имя шрифта */
+            src: url(fonts/OpenSans-CondLight_Rus.ttf); /* Путь к файлу со шрифтом */
+        }
 	#main-wrapper
 	{
 		/*background: #fff;*/

@@ -44,13 +44,19 @@ class Request extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('instructor_name_rus, course_name_rus, course_tags_rus, outcomes_rus, instructor_email, url', 'required', 'message'=>Yii::t('Request', 'Обязательное поле')),
-			array('instructor_name_rus, instructor_name_eng, course_name_rus, course_name_eng', 'length', 'max'=>255),
+			array('instructor_name_rus', 'required', 'message'=>Yii::t('Request', 'Поле ФИО преподавателя обязательное!')),
+                        array('course_name_rus', 'required', 'message'=>Yii::t('Request', 'Поле Название курса обязательное!')),
+                        array('course_tags_rus', 'required', 'message'=>Yii::t('Request', 'Поле Ключевые слова обязательное!')),
+                        array('outcomes_rus', 'required', 'message'=>Yii::t('Request', 'Поле Что умеет студент обязательное!')),
+                        array('instructor_email', 'required', 'message'=>Yii::t('Request', 'Поле email преподавателя обязательное!')),
+                        array('instructor_name_rus, instructor_name_eng, course_name_rus, course_name_eng', 'length', 'max'=>255),
 			array('instructor_email', 'length', 'max'=>100),
                         array('instructor_email', 'email', 'message'=>Yii::t('Request', 'Поле email заполено неверно!')),
-                        //array('instructor_name_rus', 'match', 'pattern' => '/^[А-Яа-я\s,]+$/u','message' => 'Имя должно содержать только русские символы.'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
+                        array('url','safe'),
+                        array('instructor_name_eng','safe'),
+                        array('course_name_eng','safe'),
+                        array('course_tags_eng','safe'),
+                        array('outcomes_eng','safe'),
 			array('id, instructor_name_rus, instructor_name_eng, course_name_rus, course_name_eng, course_tags_rus, course_tags_eng, outcomes_rus, outcomes_eng, date, instructor_email, url', 'safe', 'on'=>'search'),
 		);
 	}
