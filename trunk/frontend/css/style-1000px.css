@@ -9,7 +9,10 @@
 /*********************************************************************************/
 
 /* Basic */
-
+        @font-face {
+            font-family: Open Sans Condensed Rus; /* Имя шрифта */
+            src: url(fonts/OpenSans-CondLight_Rus.ttf); /* Путь к файлу со шрифтом */
+        }
 	body
 	{
 		font-size: 13pt;

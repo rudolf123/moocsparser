@@ -45,8 +45,9 @@
                                         array('label'=>'Курсы', 'url'=>array('/course/admin')),
                                         //array('label'=>'О проекте', 'url'=>array('/site/page', 'view'=>'about')),
                                         //array('label'=>'Обратная связь', 'url'=>array('/site/contact')),
-                                        array('label'=>'Заявка на регистрацию курса', 'url'=>array('/request/create')),
-                                        array('label'=>'Регистрация', 'url'=>array('user/registration'), 'visible'=>Yii::app()->user->isGuest),
+                                        array('label'=>'Регистрация курса', 'url'=>array('/request/index')),
+                                        array('label'=>'Курсы moodle', 'url'=>array('/request/admin')),
+                                        //array('label'=>'Регистрация', 'url'=>array('user/registration'), 'visible'=>Yii::app()->user->isGuest),
                                         array('label'=>'Вход', 'url'=>array('user/login'), 'visible'=>Yii::app()->user->isGuest),
                                         array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
                                 ),

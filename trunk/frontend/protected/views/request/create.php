@@ -11,7 +11,6 @@
                         'validateOnChange' => true,
                     ),
                 'htmlOptions'=>array(
-                    'class'=>'well',
                     'accept-charset'=>'UTF-8',
                 ),
                 'action' => array('request/create'), // когда форма показывается и в других контроллерах, не только 'site', то я в каждый из этих контроллеров вставил actionQuick, a здесь указал — array('quick'); почему-то не получается с array('//site/quick')
@@ -32,18 +31,18 @@
 		<h3 class="fs-subtitle">Шаг 1</h3>
                 <?php echo $forms->textField($form, 'url',array('placeholder' => 'Ссылка на курс в moodle')) ?>
                 <?php echo $forms->textField($form, 'instructor_name_rus',array('placeholder' => 'ФИО преподавателя (рус.)')) ?>
-                <?php echo $forms->textField($form, 'instructor_name_eng',array('placeholder' => 'ФИО преподавателя (англ.)')) ?>
+                <?php //echo $forms->textField($form, 'instructor_name_eng',array('placeholder' => 'ФИО преподавателя (англ.)')) ?>
                 <?php echo $forms->textField($form, 'course_name_rus',array('placeholder' => 'Название курса (рус.)')) ?>
-                <?php echo $forms->textField($form, 'course_name_eng',array('placeholder' => 'Название курса  (англ.)')) ?> 
+                <?php //echo $forms->textField($form, 'course_name_eng',array('placeholder' => 'Название курса  (англ.)')) ?> 
                 <input type="button" name="next" class="next action-button" value="Далее" />
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Описание курса</h2>
 		<h3 class="fs-subtitle">Шаг 2</h3>
                 <?php echo $forms->textArea($form, 'course_tags_rus',array('placeholder' => 'Ключевые слова курса  (рус.)')) ?>
-                <?php echo $forms->textArea($form, 'course_tags_eng',array('placeholder' => 'Ключевые слова курса  (англ.)')) ?>
+                <?php //echo $forms->textArea($form, 'course_tags_eng',array('placeholder' => 'Ключевые слова курса  (англ.)')) ?>
                 <?php echo $forms->textArea($form, 'outcomes_rus',array('placeholder' => 'Компетенция (Что умеет студент после окончания курса (рус.)?)')) ?>
-                <?php echo $forms->textArea($form, 'outcomes_eng',array('placeholder' => 'Компетенция (Что умеет студент после окончания курса (англ.)?)')) ?>
+                <?php //echo $forms->textArea($form, 'outcomes_eng',array('placeholder' => 'Компетенция (Что умеет студент после окончания курса (англ.)?)')) ?>
                 <input type="button" name="next" class="next action-button" value="Далее" />
                 <input type="button" name="previous" class="previous action-button" value="Назад" />
         </fieldset>

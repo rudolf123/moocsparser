@@ -1,8 +1,3 @@
-<?php
-/* @var $this RequestController */
-/* @var $data Request */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
@@ -48,6 +43,10 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('instructor_email')); ?>:</b>
 	<?php echo CHtml::encode($data->instructor_email); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('url')); ?>:</b>
+	<?php echo CHtml::encode($data->url); ?>
 	<br />
 
 	*/ ?>

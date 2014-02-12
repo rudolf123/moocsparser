@@ -1,9 +1,3 @@
-<?php
-/* @var $this RequestController */
-/* @var $model Request */
-/* @var $form CActiveForm */
-?>
-
 <div class="wide form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -64,6 +58,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'instructor_email'); ?>
 		<?php echo $form->textField($model,'instructor_email',array('size'=>60,'maxlength'=>100)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'url'); ?>
+		<?php echo $form->textField($model,'url',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row buttons">

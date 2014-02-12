@@ -1,24 +1,8 @@
-<?php
-/* @var $this RequestController */
-/* @var $model Request */
-/* @var $form CActiveForm */
-?>
-
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-                'id' => 'addrequest-form',
-                'enableClientValidation' => true,
-                //'enableAjaxValidation'=>true, // <<<<------ валидация по AJAX
-                'clientOptions' => array(
-                        'validateOnSubmit' => true,
-                        'validateOnChange' => true,
-                    ),
-                'htmlOptions'=>array(
-                    'class'=>'well',
-                    'accept-charset'=>'UTF-8',
-                ),
-                'action' => array('request/create'), // когда форма показывается и в других контроллерах, не только 'site', то я в каждый из этих контроллеров вставил actionQuick, a здесь указал — array('quick'); почему-то не получается с array('//site/quick')
+	'id'=>'request-form',
+	'enableAjaxValidation'=>false,
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -74,9 +58,21 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'date'); ?>
+		<?php echo $form->textField($model,'date'); ?>
+		<?php echo $form->error($model,'date'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'instructor_email'); ?>
 		<?php echo $form->textField($model,'instructor_email',array('size'=>60,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'instructor_email'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'url'); ?>
+		<?php echo $form->textField($model,'url',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'url'); ?>
 	</div>
 
 	<div class="row buttons">
