@@ -86,7 +86,8 @@ public class mocsparserUI extends javax.swing.JFrame{
         boolean rs = false;
         try {
                 info.replaceAll("'", "\\\\'");
-                String query = "INSERT INTO `moocsdb`.`courses` "
+                String query = "INSERT INTO `moocsdb"
+                        +"`.`courses` "
                         + "(`id`, `title`, `schoolname`, `platform`, `start`, `length`, `estimate`, `language`, `subtitles`, `about`, `staff`, `staff_profile`, `info`, `similar`) VALUES"
                         + "(NULL, '" + info.title + "', '" + info.schoolname + "', '" + info.platform + "', '" + info.start + "', '" + info.length + "', '" + info.estimate + "', '" + info.language + "', '" + info.subtitles + "',"
                         + " '" + info.about + "', '" + info.staff + "', '" + info.staff_profile + "', '" + info.info + "', '" + info.similar + "');";
@@ -103,6 +104,16 @@ public class mocsparserUI extends javax.swing.JFrame{
         return true;
     }
 
+    class InfoMoodle{
+            public InfoMoodle(){
+            id = -1;
+            title = "";
+            url = "";
+        }
+        int id;
+        String title;
+        String url;
+    }
     class Info{
         public Info(){
             schoolname = "";
@@ -138,18 +149,18 @@ public class mocsparserUI extends javax.swing.JFrame{
         }
         public void replaceAll(String pattern, String replacement){
             schoolname = schoolname.replaceAll(pattern, replacement);
-            platform = platform.replaceAll(pattern, replacement);;
-            title = title.replaceAll(pattern, replacement);;
-            start = start.replaceAll(pattern, replacement);;
-            length = length.replaceAll(pattern, replacement);;
-            estimate = estimate.replaceAll(pattern, replacement);;
-            language = language.replaceAll(pattern, replacement);;
-            subtitles = subtitles.replaceAll(pattern, replacement);;
-            about = about.replaceAll(pattern, replacement);;
-            staff = staff.replaceAll(pattern, replacement);;
-            staff_profile = staff_profile.replaceAll(pattern, replacement);;
-            similar = similar.replaceAll(pattern, replacement);;
-            info = info.replaceAll(pattern, replacement);;
+            platform = platform.replaceAll(pattern, replacement);
+            title = title.replaceAll(pattern, replacement);
+            start = start.replaceAll(pattern, replacement);
+            length = length.replaceAll(pattern, replacement);
+            estimate = estimate.replaceAll(pattern, replacement);
+            language = language.replaceAll(pattern, replacement);
+            subtitles = subtitles.replaceAll(pattern, replacement);
+            about = about.replaceAll(pattern, replacement);
+            staff = staff.replaceAll(pattern, replacement);
+            staff_profile = staff_profile.replaceAll(pattern, replacement);
+            similar = similar.replaceAll(pattern, replacement);
+            info = info.replaceAll(pattern, replacement);
         } 
         String schoolname;
         String platform;
@@ -271,7 +282,7 @@ public class mocsparserUI extends javax.swing.JFrame{
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        buConnectToDB = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -287,15 +298,15 @@ public class mocsparserUI extends javax.swing.JFrame{
         jScrollPane1 = new javax.swing.JScrollPane();
         LogArea = new javax.swing.JTextArea();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        buMoodlestart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton2.setText("Соединиться с БД");
-        jButton2.setToolTipText("");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buConnectToDB.setText("Соединиться с БД");
+        buConnectToDB.setToolTipText("");
+        buConnectToDB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buConnectToDBActionPerformed(evt);
             }
         });
 
@@ -355,10 +366,11 @@ public class mocsparserUI extends javax.swing.JFrame{
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buMoodlestart.setText("Загрузить курсы moodle");
+        buMoodlestart.setToolTipText("");
+        buMoodlestart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buMoodlestartActionPerformed(evt);
             }
         });
 
@@ -386,9 +398,7 @@ public class mocsparserUI extends javax.swing.JFrame{
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jLabel5)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(83, 83, 83)
-                .addComponent(jButton1)
+                    .addComponent(buConnectToDB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(buStart)
@@ -396,6 +406,8 @@ public class mocsparserUI extends javax.swing.JFrame{
                 .addComponent(buStop)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox1)
+                .addGap(75, 75, 75)
+                .addComponent(buMoodlestart)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(ProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
@@ -419,16 +431,15 @@ public class mocsparserUI extends javax.swing.JFrame{
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(buConnectToDB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buStart)
                     .addComponent(buStop)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jCheckBox1)
+                    .addComponent(buMoodlestart))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -514,7 +525,7 @@ public class mocsparserUI extends javax.swing.JFrame{
             return true;
         }
         
-        public boolean getCoursesLinks(){
+        private boolean getCoursesLinks(){
             ProgressBar.setString("Cобираем ссылки на курсы с http://study.pgta.ru/");
             ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
             try {
@@ -546,22 +557,84 @@ public class mocsparserUI extends javax.swing.JFrame{
                     continue;
                 }
                 Elements course_titles = null;
+                InfoMoodle info = new InfoMoodle();
                 if (!doc.select("table[class=generalbox boxaligncenter]").isEmpty())
                 {
-                    course_titles = doc.select("table[class=generalbox boxaligncenter]").select("a[title=Краткое описание]");
+                    course_titles = doc.select("table[class=generalbox boxaligncenter]").select("a");
                     for(Element course_title : course_titles)
                     {
-                        String tmp = course_title.attr("href");;
-                        LogArea.append(tmp + "\n");
-                        links.add(tmp);
+                        String tmp="";
+                        if (course_title.attr("href").contains("view.php"))
+                        {
+                            if(course_title.select("img").isEmpty())
+                            {
+                                String href = course_title.attr("href");
+                                int id = Integer.parseInt(href.substring(href.indexOf("=")+1));
+                                tmp = course_title.ownText() + "; id = " + Integer.toString(id);
+                                LogArea.append(tmp + "\n");
+                                links.add(tmp);
+                                info.id = id;
+                                info.title = course_title.ownText();
+                                info.url = "http://study.pgta.ru/course/" + href;
+                                
+                                boolean rs;
+                                try {
+                                        info.title = info.title.replaceAll("'", "\\\\'");
+                                        String query = "INSERT INTO `moocsdb"
+                                                + "`.`courses_moodle` "
+                                                + "(`moodle_id`, `url`, `title`) VALUES"
+                                                + "('" + Integer.toString(info.id) + "', '" + info.url + "', '" + info.title + "');";
+                                        Statement stmt = MySQLConnection.createStatement();
+
+                                        rs = stmt.execute(query);
+                                } catch (SQLException e) {
+                                        LogArea.append("!!!!Ошибка при добавлении в БД!!!! - " + e.toString() + "\n"); 
+                                        e.printStackTrace();
+                                }
+                            }
+                        }
                     }
                 }
                 
-                if (!doc.select("div[class=courseboxes box)]").isEmpty())
+                if (!doc.select("div[class=courseboxes box]").isEmpty())
                 {
-                    
-                }
+                    course_titles = doc.select("div[class=name]").select("a");
+                    for(Element course_title : course_titles)
+                    {
+                        String tmp="";
+                        if (course_title.attr("href").contains("view.php"))
+                        {
+                            String href = course_title.attr("href");
+                            int id = Integer.parseInt(href.substring(href.indexOf("=")+1));
+                            tmp = course_title.ownText() + "; id = " + Integer.toString(id);
+                            LogArea.append(tmp + "\n");
+                            links.add(tmp);
+                            
+                            info.id = id;
+                            info.title = course_title.ownText();
+                            info.url = href;
+                            
+                            boolean rs = false;
+                            try {
+                                    info.title = info.title.replaceAll("'", "\\\\'");
+                                    String query = "INSERT INTO `moocsdb"
+                                            + "`.`courses_moodle` "
+                                            + "(`moodle_id`, `title`, `url`) VALUES"
+                                            + "('" + info.id + "', '" + info.title + "', '" + info.url + "');";
+                                    Statement stmt = MySQLConnection.createStatement();
 
+                                    rs = stmt.execute(query);
+                            } catch (SQLException e) {
+                                    LogArea.append("!!!!Ошибка при добавлении в БД!!!! - " + e.toString() + "\n"); 
+                                    e.printStackTrace();
+                            }
+                            
+                            if (rs == true)
+                                LogArea.append("Запись добавлена!");
+                        }
+                    }
+                }
+                
                 /**/
                 fProgress += step;
                 progress = Math.round(fProgress); 
@@ -581,31 +654,6 @@ public class mocsparserUI extends javax.swing.JFrame{
                 getCoursesLinks();
             else
                 getCoursesLinksFromCache();
-            progress = 0; 
-            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
-            ProgressBar.setString("Cобираем описания курсов с http://www.mooc-list.com");
-            //вычисляем шаг для прогресса и пошагово открываем все ссылки
-            int courseNum = links.toArray().length;
-            LogArea.append("CoursesNum = " + Integer.toString(courseNum));
-            step = 100f/courseNum;
-            LogArea.append("step = " + Float.toString(step));
-
-            for (Object link: links)
-            {
-                Info info = null;
-                info = parseMoocListCourse(link.toString());
-                if (InserttoDB(info))
-                    LogArea.append("Запись добавлена!" + "\n");
-                else
-                    LogArea.append("Ошибка! - Невозможно добавить запись" + link.toString() + "\n");
-                
-                fProgress += step;
-                progress = Math.round(fProgress); 
-                ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
-            }
-            ProgressBar.setString("Готово");
-            progress = 100; 
-            ProgressBar.firePropertyChange("progress",ProgressBar.getValue(),progress);
             
             return null;
         }
@@ -614,8 +662,7 @@ public class mocsparserUI extends javax.swing.JFrame{
          */
         @Override
         public void done() {
-            buStart.setEnabled(true);
-            buStop.setEnabled(false);
+            buMoodlestart.setEnabled(true);
         }
     }
         
@@ -1017,7 +1064,7 @@ public class mocsparserUI extends javax.swing.JFrame{
         buStop.setEnabled(false);
     }//GEN-LAST:event_buStopActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buConnectToDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buConnectToDBActionPerformed
         try {
             mySQLConnectionInfo connectinfo = new mySQLConnectionInfo();
             connectinfo.serverName = jTextField1.getText();
@@ -1029,7 +1076,7 @@ public class mocsparserUI extends javax.swing.JFrame{
             {
                 if (connecttoMySQL(connectinfo))
                 {
-                    jButton2.setText("Отсоединить");
+                    buConnectToDB.setText("Отсоединить");
                     LogArea.append("Соединено с БД: " + connectinfo.serverName +"/"+ connectinfo.database + "\n");
                     jLabel4.setText("Соединено!");
                     connectedtodb = true;
@@ -1040,22 +1087,33 @@ public class mocsparserUI extends javax.swing.JFrame{
                 MySQLConnection.close();
                 connectedtodb = false;
                 LogArea.append("Отсоединено от БД: " + connectinfo.serverName +"/"+ connectinfo.database + "\n");
-                jButton2.setText("Соединиться с БД");
+                buConnectToDB.setText("Соединиться с БД");
                 jLabel4.setText("Нет соединения!");
             }
         }catch (SQLException e) {
                 e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buConnectToDBActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TaskParsingStudyPgta task_new = new TaskParsingStudyPgta(false);
-        task_new.getCoursesLinks();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buMoodlestartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buMoodlestartActionPerformed
+        if (!connectedtodb){
+            JOptionPane.showMessageDialog(jPanel2,
+                                            "Нет подключения к БД",
+                                            "Внимание!",
+                                            JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        {
+            ProgressBar.setStringPainted(true);
+            TaskParsingStudyPgta task_new = new TaskParsingStudyPgta(false);
+            task_new.execute();
+            buMoodlestart.setEnabled(false);
+        }
+    }//GEN-LAST:event_buMoodlestartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1095,10 +1153,10 @@ public class mocsparserUI extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea LogArea;
     private javax.swing.JProgressBar ProgressBar;
+    private javax.swing.JButton buConnectToDB;
+    private javax.swing.JButton buMoodlestart;
     private javax.swing.JButton buStart;
     private javax.swing.JButton buStop;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -9,41 +9,31 @@ class RequestController extends Controller
     
     public function actionCreate()
     {
+        if(isset($_POST['url'])) {
+	    header("Content-type: text/txt; charset=UTF-8");
+	    $moodlecourse = CoursesMoodle::model()->findByAttributes(array('url'=>$_POST['url']));
+            if ($moodlecourse)
+                echo $moodlecourse->title;
+            else
+                echo "Курс не найден, введите название вручную";
+            
+            Yii::app()->end();
+	}
+        
         $form = new Request();
 
         if (!empty($_POST['Request'])) {
             $form->attributes = $_POST['Request'];
+            $form->course_tags_eng = $_POST['course_tags_eng'];
+            $form->outcomes_eng = $_POST['outcomes_eng'];
+            $form->date = date('Y-m-d H:i:s', time());;
             if ($form->save())
-                    $this->render("index");
+            {
+                    $this->render("success");
+                    Yii::app()->end();
+            }
         }
-        
+
         $this->render("create", array('form'=>$form));
     }
-        
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }
