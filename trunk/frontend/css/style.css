@@ -15,7 +15,18 @@
         }
         
 	*,*:before,*:after{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;-o-box-sizing:content-box;-ms-box-sizing:content-box;box-sizing:content-box}
-
+        /*html, body, #main-wrapper {
+            height: 100%;
+        }
+        body > #main-wrapper { 
+            height: auto; 
+            min-height: 100%; 
+        }*/
+        
+       /* #main-wrapper { 
+            padding-bottom: 3em; 
+        }*/
+        
 	body
 	{
 		background: #f0f0f0 url('images/bg1.png');
@@ -51,12 +62,13 @@
 
 	a
 	{
-		color: #478903;
+		color: #0893cf;
 		text-decoration: underline;
 	}
 
 	a:hover
 	{
+                color: #58d3FF;
 		text-decoration: none;
 	}
 
@@ -225,6 +237,7 @@
                 margin-left: 0px;
                 padding-bottom: 500px;
         }
+
         #msform fieldset {
                 background: none repeat scroll 0% 0% #FFF;
                 border: 0px none;
@@ -380,8 +393,7 @@
 		border:1px solid #d3d3d3;
 		background:#fefefe;
 		width:100%;
-		margin:5% auto 0;
-		-moz-border-radius:5px; /* FF1+ */
+         	-moz-border-radius:5px; /* FF1+ */
 		-webkit-border-radius:5px; /* Saf3-4 */
 		border-radius:5px;
 		-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
@@ -415,8 +427,8 @@
 	}
 	
 	th {
-		background: -moz-linear-gradient(100% 20% 90deg, #55D3FF, #ededed);
-		background: -webkit-gradient(linear, 0% 0%, 0% 20%, from(#ededed), to(#55D3FF));
+		background: -moz-linear-gradient(100% 20% 90deg, #B7D6E7, #B7D6E7);
+		background: -webkit-gradient(linear, 0% 0%, 0% 20%, from(#B7D6E7), to(#B7D6E7));
 	}
 	
 	/*

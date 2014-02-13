@@ -41,6 +41,9 @@ return array(
                         'loginUrl' => array('user/login'),
 
 		),
+                'request' => array(
+                    'baseUrl' => 'http://moocstable',
+                ),
                 'session' => array(
                     'class' => 'CDbHttpSession',
                     'timeout' => 6000,
@@ -91,10 +94,6 @@ return array(
 				*/
 			),
 		),
-                //'bootstrap'=>array(
-                //        'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
-                //        'responsiveCss' => true,
-                //),
                 'user'=>array(
                         'class' => 'WebUser',
                 ),

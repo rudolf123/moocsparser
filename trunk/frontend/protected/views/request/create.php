@@ -29,7 +29,8 @@
 	<fieldset>
 		<h2 class="fs-title">Общая информация</h2>
 		<h3 class="fs-subtitle">Шаг 1</h3>
-                <?php echo $forms->textField($form, 'url',array('placeholder' => 'Ссылка на курс в moodle')) ?>
+                <a href="http://study.pgta.ru/course/index.php" target="_blank">Список курсов образовательного портала ПензГТУ</a>
+                <?php echo $forms->textField($form, 'url',array('placeholder' => 'Ссылка на курс образовательного портала ПензГТУ')) ?>
                 <?php echo $forms->textField($form, 'instructor_name_rus',array('placeholder' => 'ФИО преподавателя (рус.)')) ?>
                 <?php //echo $forms->textField($form, 'instructor_name_eng',array('placeholder' => 'ФИО преподавателя (англ.)')) ?>
                 <?php echo $forms->textField($form, 'course_name_rus',array('placeholder' => 'Название курса (рус.)')) ?>
