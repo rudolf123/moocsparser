@@ -13,7 +13,7 @@ $form = $model;
                     ),
                 'htmlOptions'=>array(
                     'accept-charset'=>'UTF-8',
-                    'style'=>'width:100%',
+                    'style'=>'width:100%; margin-top:0px; padding-bottom:0px'
                 ),
             ));
 ?>
