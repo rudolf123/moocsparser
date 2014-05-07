@@ -18,6 +18,7 @@
  */
 class Request extends CActiveRecord
 {
+        public $xls_file;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -52,6 +53,7 @@ class Request extends CActiveRecord
                         array('instructor_name_rus, instructor_name_eng, course_name_rus, course_name_eng', 'length', 'max'=>255),
 			array('instructor_email', 'length', 'max'=>100),
                         array('instructor_email', 'email', 'message'=>Yii::t('Request', 'Поле email заполено неверно!')),
+                        array('xls_file', 'file', 'types'=>'xls, xlsx', 'allowEmpty'=>true),
                         array('url','safe'),
                         array('instructor_name_eng','safe'),
                         array('course_name_eng','safe'),
@@ -92,8 +94,25 @@ class Request extends CActiveRecord
                         'url' => 'Ссылка на курс в системе moodle',
 		);
 	}
+        
+        protected function beforeSave()
+        {
+            if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/upload/'))
+            {
+                mkdir($_SERVER['DOCUMENT_ROOT'].'/upload/', 0777);
+            }
+            $xls_file = CUploadedFile::getInstance($this,'xls_file');
+            if ($xls_file)
+            {
+                $this->xls_file=$imgfile;
+                $this->xls_file->saveAs(
+                    $_SERVER['DOCUMENT_ROOT'].'/upload/'.$this->xls_file);
+            }
+            
+            return true;
+        }
 
-	/**
+        /**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */

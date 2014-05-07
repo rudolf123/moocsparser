@@ -2172,3 +2172,966 @@ Stack trace:
 REQUEST_URI=/index.php/site/css/style.css
 HTTP_REFERER=http://moocstable/index.php/site/index
 ---
+2014/04/22 09:54:31 [error] [system.db.CDbCommand] Error in preparing SQL: DELETE FROM 'YiiSession' WHERE expire<:expire
+in Z:\home\moocsparser\www\protected\views\layouts\main.php (37)
+in Z:\home\moocsparser\www\protected\views\layouts\column1.php (5)
+in Z:\home\moocsparser\www\protected\controllers\SiteController.php (32)
+2014/04/22 09:54:31 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): CDbCommand не удалось подготовить SQL-запрос: SQLSTATE[HY000]: General error: 1 no such table: YiiSession. Выполнявшийся SQL-запрос: DELETE FROM 'YiiSession' WHERE expire<:expire.
+in Z:\home\moocsparser\www\protected\views\layouts\main.php (37)
+in Z:\home\moocsparser\www\protected\views\layouts\column1.php (5)
+in Z:\home\moocsparser\www\protected\controllers\SiteController.php (32)
+2014/04/22 10:02:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in Z:\home\Yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 Z:\home\Yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 Z:\home\Yii\framework\web\CDbHttpSession.php(200): CDbConnection->setActive(true)
+#2 [internal function]: CDbHttpSession->openSession('/tmp', 'PHPSESSID')
+#3 Z:\home\Yii\framework\web\CHttpSession.php(114): session_start()
+#4 Z:\home\Yii\framework\web\CHttpSession.php(88): CHttpSession->open()
+#5 Z:\home\Yii\framework\base\CModule.php(387): CHttpSession->init()
+#6 Z:\home\Yii\framework\web\CWebApplication.php(201): CModule->getComponent('session')
+#7 Z:\home\Yii\framework\web\auth\CWebUser.php(199): CWebApplication->getSession()
+#8 Z:\home\Yii\framework\base\CModule.php(387): CWebUser->init()
+#9 Z:\home\Yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 Z:\home\moocsparser\www\protected\views\layouts\main.php(37): CModule->__get('user')
+#11 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#12 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#13 Z:\home\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#14 Z:\home\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 Z:\home\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 Z:\home\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 Z:\home\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 Z:\home\moocsparser\www\protected\views\layouts\column1.php(5): CBaseController->endContent()
+#19 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#20 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#21 Z:\home\Yii\framework\web\CController.php(784): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#22 Z:\home\moocsparser\www\protected\controllers\SiteController.php(32): CController->render('index')
+#23 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 Z:\home\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#30 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://localhost/denwer/Tools/sitelist/index.php
+---
+2014/04/22 10:07:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in Z:\home\Yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 Z:\home\Yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 Z:\home\Yii\framework\web\CDbHttpSession.php(200): CDbConnection->setActive(true)
+#2 [internal function]: CDbHttpSession->openSession('/tmp', 'PHPSESSID')
+#3 Z:\home\Yii\framework\web\CHttpSession.php(114): session_start()
+#4 Z:\home\Yii\framework\web\CHttpSession.php(88): CHttpSession->open()
+#5 Z:\home\Yii\framework\base\CModule.php(387): CHttpSession->init()
+#6 Z:\home\Yii\framework\web\CWebApplication.php(201): CModule->getComponent('session')
+#7 Z:\home\Yii\framework\web\auth\CWebUser.php(199): CWebApplication->getSession()
+#8 Z:\home\Yii\framework\base\CModule.php(387): CWebUser->init()
+#9 Z:\home\Yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 Z:\home\moocsparser\www\protected\views\layouts\main.php(37): CModule->__get('user')
+#11 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#12 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#13 Z:\home\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#14 Z:\home\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 Z:\home\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 Z:\home\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 Z:\home\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 Z:\home\moocsparser\www\protected\views\layouts\column1.php(5): CBaseController->endContent()
+#19 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#20 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#21 Z:\home\Yii\framework\web\CController.php(784): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#22 Z:\home\moocsparser\www\protected\controllers\SiteController.php(32): CController->render('index')
+#23 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 Z:\home\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#30 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://localhost/denwer/Tools/sitelist/index.php
+---
+2014/04/22 10:07:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: could not find driver' in Z:\home\Yii\framework\db\CDbConnection.php:382
+Stack trace:
+#0 Z:\home\Yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 Z:\home\Yii\framework\web\CDbHttpSession.php(200): CDbConnection->setActive(true)
+#2 [internal function]: CDbHttpSession->openSession('/tmp', 'PHPSESSID')
+#3 Z:\home\Yii\framework\web\CHttpSession.php(114): session_start()
+#4 Z:\home\Yii\framework\web\CHttpSession.php(88): CHttpSession->open()
+#5 Z:\home\Yii\framework\base\CModule.php(387): CHttpSession->init()
+#6 Z:\home\Yii\framework\web\CWebApplication.php(201): CModule->getComponent('session')
+#7 Z:\home\Yii\framework\web\auth\CWebUser.php(199): CWebApplication->getSession()
+#8 Z:\home\Yii\framework\base\CModule.php(387): CWebUser->init()
+#9 Z:\home\Yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 Z:\home\moocsparser\www\protected\views\layouts\main.php(37): CModule->__get('user')
+#11 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#12 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#13 Z:\home\Yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#14 Z:\home\Yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 Z:\home\Yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 Z:\home\Yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 Z:\home\Yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 Z:\home\moocsparser\www\protected\views\layouts\column1.php(5): CBaseController->endContent()
+#19 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#20 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#21 Z:\home\Yii\framework\web\CController.php(784): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#22 Z:\home\moocsparser\www\protected\controllers\SiteController.php(32): CController->render('index')
+#23 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 Z:\home\Yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#30 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#31 {main}
+REQUEST_URI=/
+HTTP_REFERER=http://localhost/denwer/Tools/sitelist/index.php
+---
+2014/04/22 10:54:47 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\Yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 Z:\home\Yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), '?? ?????? ?????...')
+#1 Z:\home\Yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('export')
+#8 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/export')
+#9 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php/request/export
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/22 10:55:22 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\Yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 Z:\home\Yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), '?? ?????? ?????...')
+#1 Z:\home\Yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('export')
+#8 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/export')
+#9 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php/request/export
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/22 12:04:50 [error] [exception.Exception] exception 'Exception' with message 'The filename example.xls is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('example.xls')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(176): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('example.xls')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionImport()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('import')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/import')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/import
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/22 12:05:20 [error] [php] Function split() is deprecated (Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:844)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(1454): JPhpExcelReader->_getCellDetails()
+#1 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(1317): JPhpExcelReader->_parsesheet()
+#2 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(990): JPhpExcelReader->_parse()
+#3 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): JPhpExcelReader->read()
+#4 Z:\home\moocsparser\www\protected\controllers\RequestController.php(176): JPhpExcelReader->Spreadsheet_Excel_Reader()
+#5 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionImport()
+#6 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#8 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#11 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#14 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#15 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/import
+in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php (844)
+in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php (1635)
+in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php (1454)
+2014/04/22 12:06:22 [error] [php] Function split() is deprecated (Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:79)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(1385): JPhpExcelReader->_getCellDetails()
+#1 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(1317): JPhpExcelReader->_parsesheet()
+#2 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(990): JPhpExcelReader->_parse()
+#3 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): JPhpExcelReader->read()
+#4 Z:\home\moocsparser\www\protected\controllers\RequestController.php(176): JPhpExcelReader->Spreadsheet_Excel_Reader()
+#5 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionImport()
+#6 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#8 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#10 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#11 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#12 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#13 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#14 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#15 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#16 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#17 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/import
+in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php (79)
+in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php (1622)
+in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php (1385)
+2014/04/23 09:34:34 [error] [exception.CException] exception 'CException' with message 'Неправильный алиас "xupload.models.XUploadForm". Убедитесь, что он указывает на существующую директорию или файл.' in Z:\home\Yii\framework\YiiBase.php:347
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(159): YiiBase::import('xupload.models....')
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php
+---
+2014/04/23 09:59:40 [error] [php] include(ext.xupload\models\XUploadForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\Yii\framework\YiiBase.php:401)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(160): spl_autoload_call()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (160)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/23 10:01:38 [error] [php] include(ext.xupload\models\XUploadForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\Yii\framework\YiiBase.php:401)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(160): spl_autoload_call()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (160)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/23 10:01:40 [error] [php] include(ext.xupload\models\XUploadForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\Yii\framework\YiiBase.php:401)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(160): spl_autoload_call()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (160)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/23 10:02:46 [error] [php] include(ext.xupload\models\XUploadForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\Yii\framework\YiiBase.php:401)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(160): spl_autoload_call()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (160)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/23 10:03:22 [error] [php] include(ext.xupload\models\XUploadForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\Yii\framework\YiiBase.php:401)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(160): spl_autoload_call()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (160)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/23 10:03:23 [error] [php] include(ext.xupload\models\XUploadForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\Yii\framework\YiiBase.php:401)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(160): spl_autoload_call()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (160)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/23 10:03:24 [error] [php] include(ext.xupload\models\XUploadForm.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (Z:\home\Yii\framework\YiiBase.php:401)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\RequestController.php(160): spl_autoload_call()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#4 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#6 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#7 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#8 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#9 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#10 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (160)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/23 11:19:57 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "XUpload.action".' in Z:\home\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 Z:\home\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('action', 'excelsubmit')
+#1 Z:\home\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(RequestController), 'application.ext...', Array)
+#2 Z:\home\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.ext...', Array)
+#3 Z:\home\moocsparser\www\protected\views\request\admin.php(59): CBaseController->widget('application.ext...', Array)
+#4 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#5 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#6 Z:\home\Yii\framework\web\CController.php(869): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#7 Z:\home\Yii\framework\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#8 Z:\home\moocsparser\www\protected\controllers\RequestController.php(184): CController->render('admin', Array)
+#9 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#10 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#17 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#19 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#20 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/23 11:29:30 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "XUpload.action".' in Z:\home\Yii\framework\base\CComponent.php:173
+Stack trace:
+#0 Z:\home\Yii\framework\web\CWidgetFactory.php(161): CComponent->__set('action', 'excelsubmit')
+#1 Z:\home\Yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(RequestController), 'application.ext...', Array)
+#2 Z:\home\Yii\framework\web\CBaseController.php(172): CBaseController->createWidget('application.ext...', Array)
+#3 Z:\home\moocsparser\www\protected\views\request\admin.php(59): CBaseController->widget('application.ext...', Array)
+#4 Z:\home\Yii\framework\web\CBaseController.php(126): require('Z:\home\moocspa...')
+#5 Z:\home\Yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('Z:\home\moocspa...', Array, true)
+#6 Z:\home\Yii\framework\web\CController.php(869): CBaseController->renderFile('Z:\home\moocspa...', Array, true)
+#7 Z:\home\Yii\framework\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#8 Z:\home\moocsparser\www\protected\controllers\RequestController.php(186): CController->render('admin', Array)
+#9 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#10 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#17 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#19 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#20 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/23 11:31:07 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/2573-ndk-build TARGET_PLATFORM=android-9 .txt is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(177): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/23 11:32:16 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/6744-ndk-build TARGET_PLATFORM=android-9 .txt is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(177): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/24 12:29:00 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/my-test.xls is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(167): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/24 12:29:09 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/my-test.xls is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(167): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/24 12:35:28 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/my-test.xls is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(168): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+---
+2014/04/25 11:40:33 [warning] [application] Не удалось присвоить небезопасный атрибут "id" класса "Request".
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (217)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/25 11:40:35 [warning] [application] Не удалось присвоить небезопасный атрибут "id" класса "Request".
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (217)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/25 11:40:37 [warning] [application] Не удалось присвоить небезопасный атрибут "id" класса "Request".
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (217)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/25 11:40:43 [warning] [application] Не удалось присвоить небезопасный атрибут "id" класса "Request".
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (217)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/25 11:57:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Системе не удалось найти запрашиваемое действие "request".' in Z:\home\Yii\framework\web\CController.php:483
+Stack trace:
+#0 Z:\home\Yii\framework\web\CController.php(270): CController->missingAction('request')
+#1 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('request')
+#2 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/request...')
+#3 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#4 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/request/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 09:32:50 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (Z:\home\Yii\framework\web\helpers\CHtml.php:103)
+Stack trace:
+#0 Z:\home\Yii\framework\web\helpers\CHtml.php(158): renderAttributes()
+#1 Z:\home\Yii\framework\web\helpers\CHtml.php(1351): tag()
+#2 Z:\home\Yii\framework\web\helpers\CHtml.php(760): inputField()
+#3 Z:\home\moocsparser\www\protected\views\request\admin.php(82): fileField()
+#4 Z:\home\Yii\framework\web\CBaseController.php(126): require()
+#5 Z:\home\Yii\framework\web\CBaseController.php(95): RequestController->renderInternal()
+#6 Z:\home\Yii\framework\web\CController.php(869): RequestController->renderFile()
+#7 Z:\home\Yii\framework\web\CController.php(782): RequestController->renderPartial()
+#8 Z:\home\moocsparser\www\protected\controllers\RequestController.php(221): RequestController->render()
+#9 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#10 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): RequestController->runAction()
+#12 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 Z:\home\Yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): RequestController->filterAccessControl()
+#15 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#17 Z:\home\Yii\framework\web\CController.php(265): RequestController->runActionWithFilters()
+#18 Z:\home\Yii\framework\web\CWebApplication.php(282): RequestController->run()
+#19 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#20 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/request/admin
+in Z:\home\moocsparser\www\protected\views\request\admin.php (82)
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (221)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/28 11:07:51 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/codeinside.xml is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(165): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 11:08:32 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::execute(): SQLSTATE[42S02]: Base table or view not found: 1146 Table 'moocsdb.request' doesn't exist. Выполнявшийся SQL-запрос: TRUNCATE TABLE `Request`.
+in Z:\home\moocsparser\www\protected\controllers\RequestController.php (168)
+in Z:\home\moocsparser\www\index.php (13)
+2014/04/28 11:08:32 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'moocsdb.request' doesn't exist. The SQL statement executed was: TRUNCATE TABLE `Request`' in Z:\home\Yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 Z:\home\Yii\framework\db\CDbCommand.php(1359): CDbCommand->execute()
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(168): CDbCommand->truncateTable('Request')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 11:12:18 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/codeinside.xml is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(165): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 11:12:25 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/codeinside.xml is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(165): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 11:13:23 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/my-test.xls is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(165): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 11:13:45 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/my-test.xls is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(165): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 11:18:17 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/codeinside.xml is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(165): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/04/28 11:21:23 [error] [exception.Exception] exception 'Exception' with message 'The filename Z:/home/moocsparser/www/uploads/MoodleCoursesExport.xls is not readable' in Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php:985
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\extensions\phpexcelreader\excel_reader2.php(929): Spreadsheet_Excel_Reader->read('Z:/home/moocspa...')
+#1 Z:\home\moocsparser\www\protected\controllers\RequestController.php(165): Spreadsheet_Excel_Reader->Spreadsheet_Excel_Reader('Z:/home/moocspa...')
+#2 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): RequestController->actionAdmin()
+#3 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 Z:\home\Yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#10 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/admin')
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/index.php/request/admin
+HTTP_REFERER=http://moocsparser/index.php/request/admin
+---
+2014/05/05 17:29:02 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\Yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 Z:\home\Yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), '?? ?????? ?????...')
+#1 Z:\home\Yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('RunJavaUpdate')
+#8 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/RunJava...')
+#9 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php/request/RunJavaUpdate
+---
+2014/05/05 17:29:30 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'У вас недостаточно прав для выполнения указанного действия.' in Z:\home\Yii\framework\web\auth\CAccessControlFilter.php:182
+Stack trace:
+#0 Z:\home\Yii\framework\web\auth\CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), '?? ?????? ?????...')
+#1 Z:\home\Yii\framework\web\filters\CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 Z:\home\Yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 Z:\home\Yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 Z:\home\Yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 Z:\home\Yii\framework\web\CController.php(291): CFilterChain->run()
+#6 Z:\home\Yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 Z:\home\Yii\framework\web\CWebApplication.php(282): CController->run('RunJavaUpdate')
+#8 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('request/RunJava...')
+#9 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#10 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/index.php/request/RunJavaUpdate
+---
+2014/05/06 15:01:26 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:01:26 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:30:56 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:30:56 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:35:58 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:35:58 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:36:21 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:36:21 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:43:45 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 15:43:45 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 16:39:11 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/06 16:39:11 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:40:18 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:40:18 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:40:54 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:40:54 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:43:43 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:43:43 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:46:42 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:46:42 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:51:58 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:51:58 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:53:05 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:53:05 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:54:25 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 15:54:25 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (133)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:03:46 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:03:46 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:04:16 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:04:16 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:07:41 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:07:41 [warning] [application] Не удалось присвоить небезопасный атрибут "passwdModerator" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:08:04 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:09:18 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:10:07 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:10:36 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:11:18 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:11:33 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (127)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:31:15 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (128)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:33:01 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (128)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 16:35:09 [warning] [application] Не удалось присвоить небезопасный атрибут "passwd2" класса "User".
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (128)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 17:27:04 [error] [php] session_regenerate_id() [<a href='function.session-regenerate-id'>function.session-regenerate-id</a>]: Cannot regenerate session id - headers already sent (Z:\home\Yii\framework\web\CHttpSession.php:181)
+Stack trace:
+#0 Z:\home\Yii\framework\web\auth\CWebUser.php(715): CDbHttpSession->regenerateID()
+#1 Z:\home\Yii\framework\web\auth\CWebUser.php(233): WebUser->changeIdentity()
+#2 Z:\home\moocsparser\www\protected\models\User.php(106): WebUser->login()
+#3 Z:\home\Yii\framework\validators\CInlineValidator.php(42): User->authenticate()
+#4 Z:\home\Yii\framework\validators\CValidator.php(213): CInlineValidator->validateAttribute()
+#5 Z:\home\Yii\framework\base\CModel.php(159): CInlineValidator->validate()
+#6 Z:\home\moocsparser\www\protected\controllers\UserController.php(48): User->validate()
+#7 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): UserController->actionLogin()
+#8 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#9 Z:\home\Yii\framework\web\CController.php(286): UserController->runAction()
+#10 Z:\home\Yii\framework\web\CController.php(265): UserController->runActionWithFilters()
+#11 Z:\home\Yii\framework\web\CWebApplication.php(282): UserController->run()
+#12 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#13 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#14 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/user/login
+in Z:\home\moocsparser\www\protected\models\User.php (106)
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (48)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 17:29:16 [error] [php] Cannot modify header information - headers already sent by (output started at Z:\home\moocsparser\www\protected\components\UserIdentity.php:22) (Z:\home\Yii\framework\web\CHttpRequest.php:803)
+Stack trace:
+#0 Z:\home\moocsparser\www\protected\controllers\UserController.php(56): UserController->redirect()
+#1 Z:\home\Yii\framework\web\actions\CInlineAction.php(49): UserController->actionLogin()
+#2 Z:\home\Yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 Z:\home\Yii\framework\web\CController.php(286): UserController->runAction()
+#4 Z:\home\Yii\framework\web\CController.php(265): UserController->runActionWithFilters()
+#5 Z:\home\Yii\framework\web\CWebApplication.php(282): UserController->run()
+#6 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#8 Z:\home\moocsparser\www\index.php(13): CWebApplication->run()
+REQUEST_URI=/index.php/user/login
+in Z:\home\moocsparser\www\protected\controllers\UserController.php (56)
+in Z:\home\moocsparser\www\index.php (13)
+2014/05/07 17:40:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "adminuserrequest".' in Z:\home\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('adminuserreques...')
+#1 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/adminuserrequest
+---
+2014/05/07 17:40:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "adminuserrequests".' in Z:\home\Yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 Z:\home\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController('adminuserreques...')
+#1 Z:\home\Yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 Z:\home\moocsparser\www\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/adminuserrequests
+---
