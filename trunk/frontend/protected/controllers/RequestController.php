@@ -18,6 +18,16 @@ class RequestController extends Controller
 		);
 	}
 
+        public function actions()
+        {
+            return array(
+                'upload'=>array(
+                    'class'=>'xupload.actions.XUploadAction',
+                    'path' =>Yii::app() -> getBasePath() . "/../uploads",
+                    'publicPath' => Yii::app() -> getBaseUrl() . "/uploads",
+                ),
+            );
+        }
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -27,15 +37,15 @@ class RequestController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('admin', 'create','index','view'),
+				'actions'=>array('create','index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','export','import','admin','RunJavaUpdate'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','export','RunJavaUpdate'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -84,7 +94,7 @@ class RequestController extends Controller
                 $form->attributes = $_POST['Request'];
                 //$form->course_tags_eng = $_POST['course_tags_eng'];
                 //$form->outcomes_eng = $_POST['outcomes_eng'];
-                $form->date = date('Y-m-d H:i:s', time());;
+                $form->date = date('Y-m-d H:i:s', time());
                 if ($form->save())
                 {
                         $this->render("success");
@@ -146,6 +156,69 @@ class RequestController extends Controller
 	{
 		$model=new Request('search');
 		$model->unsetAttributes();  // clear any default values
+
+                if($_FILES){
+                    $temp = CUploadedFile::getInstanceByName("xls_file");  // gets me the file into this varible (  i gues this wont work for multiple files at the same time )
+                    if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/uploads/'))
+                    {
+                         mkdir($_SERVER['DOCUMENT_ROOT'].'/uploads/', 0777);
+                    }
+                    $temp->saveAs($_SERVER['DOCUMENT_ROOT'].'/uploads/' . $temp->name);
+                                    
+                    Yii::import('ext.phpexcelreader.JPhpExcelReader');
+                    $data = new JPhpExcelReader($_SERVER['DOCUMENT_ROOT'].'/uploads/' .  $temp->name);
+                    //if ($data)
+                    {
+                        $user = Yii::app()->db->createCommand()->truncateTable ('requests');
+                        //$user->execute();
+                    }
+                    for ($i = 2; $i <= $data->sheets[0]['numRows']; $i++) 
+                    {
+                        // check if item number is empty
+                        if (empty($data->sheets[0]['cells'][$i][1]))
+                            continue;
+                        {
+                            $model = new Request();
+                            $model->instructor_name_rus = $data->sheets[0]['cells'][$i][2];
+                            $model->instructor_name_eng = $data->sheets[0]['cells'][$i][3];
+                            $model->course_name_rus = $data->sheets[0]['cells'][$i][4];
+                            $model->course_name_eng = $data->sheets[0]['cells'][$i][5];
+                            $model->course_tags_rus = $data->sheets[0]['cells'][$i][6];
+                            $model->course_tags_eng = $data->sheets[0]['cells'][$i][7];
+                            $model->outcomes_rus = $data->sheets[0]['cells'][$i][8];
+                            $model->outcomes_eng = $data->sheets[0]['cells'][$i][9];
+                            $model->date = $data->sheets[0]['cells'][$i][10];
+                            $model->instructor_email = $data->sheets[0]['cells'][$i][11];
+                            $model->url = $data->sheets[0]['cells'][$i][12];
+                            
+                            $model->save();
+                            
+                        }
+                    }
+                    $this->redirect('admin');
+                }
+
+                    //echo $data->dump(true,true);
+                    
+
+                        
+//                if(isset($_POST['XUploadForm']))
+//                {
+//                    if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/uploads/'))
+//                    {
+//                        mkdir($_SERVER['DOCUMENT_ROOT'].'/uploads/', 0777);
+//                    };
+//
+//                    $rnd = rand(0, 9999);
+//                        // generate random number between 0-9999
+//                    $uploadedFile = CUploadedFile::getInstance($form, 'file');
+//                    $fileName = "{$rnd}-{$uploadedFile}";
+//                    $uploadedFile -> saveAs($_SERVER['DOCUMENT_ROOT'].'/uploads/' . $fileName);
+//                    chmod( $_SERVER['DOCUMENT_ROOT'].'/uploads/' . $fileName, 0777 );
+//                    Yii::import('ext.phpexcelreader.JPhpExcelReader');
+//                    $data=new JPhpExcelReader($_SERVER['DOCUMENT_ROOT'].'/uploads/' . $fileName);
+//                    echo $data->dump(true,true);
+//                }
 		if(isset($_GET['Request']))
 			$model->attributes=$_GET['Request'];
 
@@ -153,8 +226,39 @@ class RequestController extends Controller
 			'model'=>$model,
 		));
 	}
+        
+        public function actionRunJavaUpdate()
+        {
+            echo "234";
+            shell_exec('java -jar '.$_SERVER['DOCUMENT_ROOT'].'/uploads/moocsparser.jar');
+            exec('java -jar '.$_SERVER['DOCUMENT_ROOT'].'/uploads/moocsparser.jar', $returnCode);
+            echo $returnCode;
+        }
 
-	/**
+        public function actionExport()
+        {
+            $models = Request::model()->findAll();
+            $data = array(
+                1=>array('#','ФИО преподавателя (рус.)','ФИО преподавателя (англ.)','Наименование курса (рус.)','Наименование курса (англ.)',
+                'Ключевые слова курса (рус.)','Ключевые слова курса (англ.)','Компетенции(что умеет студент после окончания курса)(рус.)','Компетенции(что умеет студент после окончания курса)(англ.)',
+                'Дата заполнения','email преподавателя для связи','Ссылка на курс в системе moodle')
+                );
+            foreach ($models as $model)
+                array_push ($data, $model);
+            Yii::import('application.extensions.phpexcel.JPhpExcel');
+            $xls = new JPhpExcel('UTF-8', false, 'My Test Sheet');
+            $xls->addArray($data);
+            $xls->generateXML('MoodleCoursesExport');
+        }
+        
+        public function actionImport()
+        {
+            Yii::import('ext.phpexcelreader.JPhpExcelReader');
+            $data=new JPhpExcelReader('example.xls');
+            echo $data->dump(true,true);
+        }
+
+        /**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded

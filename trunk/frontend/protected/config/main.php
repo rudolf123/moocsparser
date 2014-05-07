@@ -2,6 +2,7 @@
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
+//Yii::setPathOfAlias('xupload','ext.xupload');
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
@@ -42,7 +43,7 @@ return array(
 
 		),
                 'request' => array(
-                    'baseUrl' => 'http://moocstable',
+                    'baseUrl' => 'http://moocsparser',
                 ),
                 'session' => array(
                     'class' => 'CDbHttpSession',
@@ -97,6 +98,7 @@ return array(
                 'user'=>array(
                         'class' => 'WebUser',
                 ),
+
 	),
 
 	// application-level parameters that can be accessed
