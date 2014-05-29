@@ -47,7 +47,7 @@ class Course extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, schoolname, platform, start, length, estimate, language, subtitles, about, staff, staff_profile, info, similar', 'required'),
+			array('title', 'required'),
 			array('title, schoolname, platform, estimate', 'length', 'max'=>255),
 			array('start', 'length', 'max'=>200),
 			array('length', 'length', 'max'=>50),

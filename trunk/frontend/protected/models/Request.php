@@ -81,13 +81,13 @@ class Request extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'instructor_name_rus' => 'ФИО преподавателя (рус.)',
+			'instructor_name_rus' => 'ФИО преподавателя',
 			'instructor_name_eng' => 'ФИО преподавателя (англ.)',
-			'course_name_rus' => 'Наименование курса (рус.)',
+			'course_name_rus' => 'Наименование курса',
 			'course_name_eng' => 'Наименование курса (англ.)',
-			'course_tags_rus' => 'Ключевые слова курса (рус.)',
+			'course_tags_rus' => 'Ключевые слова курса',
 			'course_tags_eng' => 'Ключевые слова курса (англ.)',
-			'outcomes_rus' => 'Компетенции(что умеет студент после окончания курса)(рус.)',
+			'outcomes_rus' => 'Компетенции(что умеет студент после окончания курса)',
 			'outcomes_eng' => 'Компетенции(что умеет студент после окончания курса)(англ.)',
 			'date' => 'Дата заполнения',
 			'instructor_email' => 'email преподавателя для связи',
