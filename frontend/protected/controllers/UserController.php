@@ -12,7 +12,48 @@
  * @version 1.0
  *
  */
-class UserController extends CController {
+class UserController extends Controller {
+
+    public function init() {
+        if ($this->isValidForRedirectRequest(Yii::app()->request)) {
+            Yii::app()->user->returnUrl = Yii::app()->request->requestUri;
+        }
+    }
+
+    public function filters() {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+        );
+    }
+
+    /**
+     * Specifies the access control rules.
+     * This method is used by the 'accessControl' filter.
+     * @return array access control rules
+     */
+    public function accessRules() {
+        return array(
+            array('allow', 
+                'actions' => array('login', 'registration'),
+                'users' => array('*'),
+            ),
+            array('allow', // allow authenticated user
+                'actions' => array('logout', 'profile'),
+                'users' => array('@'),
+            ),
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions' => array('update'),
+                'expression' => array('Controller', 'allowOnlyAdminModer')
+            ),
+            array('deny', // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
+    public function isValidForRedirectRequest() { //TODO: сделать проверку
+        return true;
+    }
 
     public function actions() {
         return array(
@@ -52,6 +93,7 @@ class UserController extends CController {
                     $model->online = true;
                     $model->save();
                     $this->redirect(Yii::app()->homeUrl);
+//                    $this->redirect(Yii::app()->user->returnUrl);
                 }
             }
             $this->render('login', array('form' => $form));
@@ -65,19 +107,14 @@ class UserController extends CController {
      * Т.е. кнопочка "выход"
      */
     public function actionLogout() {
-        $model = User::model()->findByAttributes(array('id' => Yii::app()->user->id));
+        /*$model = User::model()->findByAttributes(array('id' => Yii::app()->user->id));
         $res = (strtotime(date('Y-m-d H:i:s', time())) - strtotime($model->sessionend)); // strtotime($model->sessionstart));
         $model->sessionend = date('Y-m-d H:i:s', time());
         $model->learningtime = $model->learningtime + $res;
         $model->online = false;
-        $model->save();
-
-        // Выходим
+        $model->save();*/
         Yii::app()->user->logout();
-
-
-        // Перезагружаем страницу
-        $this->redirect(Yii::app()->user->returnUrl);
+        $this->redirect(Yii::app()->homeUrl);
     }
 
     public function actionProfile() {
@@ -109,62 +146,58 @@ class UserController extends CController {
      */
     public function actionRegistration() {
         $form = new User();
-
-        // Проверяем являеться ли пользователь гостем
-        // ведь если он уже зарегистрирован - формы он не должен увидеть.
         if (!Yii::app()->user->isGuest) {
             throw new CException('Вы уже зарегистрированны!');
         } else {
-            // Если $_POST['User'] не пустой массив - значит была отправлена форма
-            // следовательно нам надо заполнить $form этими данными
-            // и провести валидацию. Если валидация пройдет успешно - пользователь
-            // будет зарегистрирован, не успешно - покажем ошибку на экран
             $this->performAjaxValidation($form);
 
             if (!empty($_POST['User'])) {
                 $form->setScenario('registration');
-                // Заполняем $form данными которые пришли с формы
+
                 $form->attributes = $_POST['User'];
                 $form->passwdModerator = $_POST['User']['passwdModerator'];
-                // Запоминаем данные которые пользователь ввёл в капче
-                // $form->verifyCode = $_POST['User']['verifyCode'];
                 $form->passwd2 = $_POST['User']['passwd2'];
-
-                // В validate мы передаем название сценария. Оно нам может понадобиться
-                // когда будем заниматься созданием правил валидации [читайте дальше]
                 if ($form->validate()) {
-                    // Если валидация прошла успешно...
-                    // Тогда проверяем свободен ли указанный логин..
                     $form->setScenario('');
                     if ($form->model()->count("login = :login", array(':login' => $form->login))) {
-                        // Указанный логин уже занят. Создаем ошибку и передаем в форму
                         $form->addError('login', 'Логин уже занят');
                         $this->render("registration", array('form' => $form));
                     } else {
-                        // Выводим страницу что "все окей"
                         $form->passwd = crypt($form->passwd, 'Fghqwe$trteysdf'); //self::blowfishSalt());
-
                         $form->regdate = date('Y-m-d H:i:s', time());
-
                         if ($form->passwdModerator === 'tank')
                             $form->role = 'moderator';
                         else
                             $form->role = 'user';
-
-                        if ($form->save())
+                        if ($form->save()) {
+                            $model = User::model()->find('login=:_login', array(':_login' => 'admin'));
+                            $this->sendEmailNotification($model->email, '');
                             $this->render("registration_ok");
+                        }
                     }
                 } else {
                     $this->render("registration", array('form' => $form));
                 }
             } else {
-                // Если $_POST['User'] пустой массив - значит форму некто не отправлял.
-                // Это значит что пользователь просто вошел на страницу регистрации
-                // и ему мы должны просто показать форму.
-
                 $this->render("registration", array('form' => $form));
             }
         }
+    }
+
+    private function sendEmailNotification($email, $data) {
+        $subject = 'Регистрация нового пользователя в системе MoocsPenzGTU';
+        $msg = 'Вы получили новую заявку на регистрацию пользователя в системе MoocsPenzGTU';
+        $b_name = 'MoocsPenzGTU';
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=utf-8\r\n";
+        $headers .= "From: " . $b_name . "\r\n";
+        $mail = mail($email, $subject, $msg, $headers);
+    }
+
+    public function log($msg) {
+        $file = fopen('log.txt', 'a');
+        fwrite($file, $msg);
+        fclose($file);
     }
 
     public function actionSaveChanges($id) {

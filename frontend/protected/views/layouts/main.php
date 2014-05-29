@@ -25,17 +25,22 @@
                         <div id="mainmenu">
                             <nav id="nav">
                                 <?php
+                                if (Yii::app()->user->checkAccess('administrator')) {
+                                    $dataProvider = new CActiveDataProvider('User', array(
+                                        'criteria' => array(
+                                            'condition' => 'approved = 0',
+                                        ),
+                                    ));
+                                    $request = 'Заявки('.$dataProvider->getItemCount().')';
+                                }
                                 $this->widget('zii.widgets.CMenu', array(
                                     'activeCssClass' => 'current_page_item',
                                     'items' => array(
                                         array('label' => 'Главная', 'url' => array('/site/index')),
-                                       // array('label' => 'Курсы MOOC', 'url' => array('/course/admin')),
-                                        //array('label'=>'О проекте', 'url'=>array('/site/page', 'view'=>'about')),
-                                        //array('label'=>'Обратная связь', 'url'=>array('/site/contact')),
-                                        //array('label' => 'Регистрация курса', 'url' => array('/request/index')),
                                         array('label' => 'Курсы Moodle', 'url' => array('/request/admin')),
                                         array('label' => 'Курсы MOOC', 'url' => array('/course/admin')),
-                                        array('label'=>'Новые пользователи', 'url'=>array('site/adminuserrequests'), 'visible'=>Yii::app()->user->isGuest),
+                                        array('label' => $request, 'url' => array('site/adminuserrequests'), 'visible' => Yii::app()->user->checkAccess('administrator')),
+                                        array('label' => 'Личный кабинет', 'url' => array('user/profile'), 'visible' => !Yii::app()->user->isGuest),
                                         array('label' => 'Вход', 'url' => array('user/login'), 'visible' => Yii::app()->user->isGuest),
                                         array('label' => 'Выйти (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                                     ),
@@ -51,7 +56,7 @@
 
         <div id="main-wrapper">
             <div class="container">
-<?php echo $content; ?>
+                <?php echo $content; ?>
             </div>
         </div>
         <div class="clear"></div>
@@ -60,24 +65,11 @@
             <footer class="container" id="site-footer">
                 <div class="row">
                     <div class="3u">
-                        Copyright &copy; <?php echo date('Y'); ?> by Vladimir Yuranov (rudolf123@narod.ru).<br/>
-                        All Rights Reserved.<br/>
-<?php echo Yii::powered(); ?>
+                        Разработчик: Юранов Владимир (rudolf123@narod.ru).<br/>
+                        <?php echo Yii::powered(); ?>
                     </div>
                 </div>
             </footer>
         </div><!-- footer -->
-
-        <script type="text/javascript">
-            function validate() {
-                valid = true;
-                if ($("#file1").val() == '') {
-                    // your validation error action
-                    valid = false;
-                }
-                return valid //true or false
-            }
-        </script>
-
     </body>
 </html>
